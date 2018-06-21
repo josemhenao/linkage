@@ -1,15 +1,31 @@
 from django import forms
-from django.contrib.auth.models import User
+from .models import Usuario
 
 class RegisterForm(forms.Form):
     class meta:
-        model = User
-        fields = ['username','email','password']
+        model = Usuario
+        fields = ['username','nombre','apellido','tipo_identificacion','identificacion','email','password', 'fecha_nacimiento']
 
         widgets = {
             'username': forms.TextInput(attrs={
                 'type': 'text',
                 'placeholder' : 'Nombre de usuario'
+            }),
+            'nombre': forms.TextInput(attrs={
+                'type': 'text',
+                'placeholder': 'Nombres'
+            }),
+            'apellido': forms.TextInput(attrs={
+                'type': 'Text',
+                'placeholder': 'Apellidos'
+            }),
+            'tipo_identificacion': forms.TextInput(attrs={
+                'type': 'Text',
+                'placeholder': 'Tipo de identificación'
+            }),
+            'identificacion': forms.TextInput(attrs={
+                'type': 'text',
+                'placeholder': 'Identificación'
             }),
             'email': forms.TextInput(attrs={
                 'type': 'email',
@@ -18,17 +34,23 @@ class RegisterForm(forms.Form):
             'password': forms.TextInput(attrs={
                 'type': 'password',
                 'placeholder': 'Password'
-            })
+            }),
+            'fecha_nacimiento': forms.TextInput(attrs={
+                'type': 'date',
+                'placeholder': 'Fecha de nacimiento'
+            }),
         }
+
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
         'type':'text',
         'placeholder': 'Username'
     }))
+
     password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
         'type':'password',
-        'placeholder':'Contraseña'
+        'placeholder':'Password'
     }))
 
     def clean(self):
@@ -43,8 +65,8 @@ class LoginForm(forms.Form):
                 self.add_error('password', 'La contraseña no coincide')
 
 
-class ConsultaForm(forms.Form):
-    username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
-        'type':'text',
-        'placeholder': 'Consulta un username'
-    }))
+# class ConsultaForm(forms.Form):
+#     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+#         'type':'text',
+#         'placeholder': 'Consulta un username'
+#     }))
