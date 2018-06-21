@@ -22,6 +22,7 @@ class Usuario(models.Model):
     username = models.CharField(max_length=45, unique=True)
     nombre = models.CharField(max_length=60)
     apellido = models.CharField(max_length=60, null=True, blank=True)
+    imagen = models.ImageField(null=True, blank=True)
 
     tipos_id = (
         ('CC','Cédula de Ciudadanía'),
