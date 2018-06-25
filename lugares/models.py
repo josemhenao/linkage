@@ -11,3 +11,6 @@ class Lugar(models.Model):
     imagen3 = models.ImageField(null=True, blank=True)
     imagen4 = models.ImageField(null=True, blank=True)
     imagen5 = models.ImageField(null=True, blank=True)
+
+    def __str__(self):
+        return self.nombre

@@ -22,8 +22,7 @@ class Usuario(models.Model):
     username = models.CharField(max_length=45, unique=True)
     nombre = models.CharField(max_length=60)
     apellido = models.CharField(max_length=60, null=True, blank=True)
-    imagen = models.ImageField(null=True, blank=True)
-
+    imagen = models.ImageField(null=True, blank=True, upload_to='static/img/profile')
     tipos_id = (
         ('CC','Cédula de Ciudadanía'),
         ('TI', 'Tarjeta de Identidad'),
@@ -34,7 +33,7 @@ class Usuario(models.Model):
     tipo_id = models.CharField(max_length=2, choices=tipos_id, blank=True, default='T',
                             help_text="Identificador del tipo de identificación")
     identificacion = models.CharField(max_length=20, default=1)
-    fecha_nacimiento = models.DateField(null=True, blank=True)
+    fecha_nacimiento = models.DateField(null=True, blank=True, help_text="formato dd/mm/YYYY ")
     email = models.EmailField()
     password = models.CharField(max_length=200)
     rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
@@ -43,6 +42,7 @@ class Usuario(models.Model):
     def __str__(self):
         nombre_completo = self.nombre + " " + self.apellido
         return nombre_completo
+
 
 
 

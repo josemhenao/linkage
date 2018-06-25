@@ -20,6 +20,9 @@ class Evento(models.Model):
     )
     apto = models.CharField(max_length=2, choices=edades, blank=True, default='T', help_text="Identificador de las edades admitidas de acuerdo a la tematica del Evento")
 
+    class Meta:
+        ordering = ["nombre"]
+
     def __str__(self):
         return self.nombre
 
@@ -28,5 +31,9 @@ class Ticket (models.Model):
     id_ticket = models.AutoField(primary_key=True)
     id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ["id_ticket"]
+
     def __str__(self):
-        return self.id_ticket
+        return "Ticket Nº. "+str(self.id_ticket)
