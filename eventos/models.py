@@ -9,7 +9,7 @@ class Evento(models.Model):
     fecha = models.DateTimeField()
     lugar = models.ForeignKey(Lugar, on_delete=models.CASCADE)
     imagen = models.ImageField(null=True, blank=True)
-
+    administrador = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     edades = (
         ('T', 'Apto para todo público'),
         ('7','Recomendada para mayores de 7 años'),
@@ -28,9 +28,11 @@ class Evento(models.Model):
 
 
 class Ticket (models.Model):
+
     id_ticket = models.AutoField(primary_key=True)
-    id_usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
-    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    lugar = models.ForeignKey(Evento,on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["id_ticket"]

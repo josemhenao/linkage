@@ -1,6 +1,7 @@
 cymysql==0.9.10
 Django==2.0.6
 django-cymysql==2.0.0
+passlib==1.7.1
 Pillow==5.1.0
 PyMySQL==0.8.1
 pytz==2018.4

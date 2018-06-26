@@ -1,47 +1,45 @@
 from django import forms
 from django.contrib.admin import widgets
 
-from .models import Usuario
 from django.contrib.auth.models import User
 
-
-class RegisterForm(forms.ModelForm):
-    class Meta:
-        model = Usuario
-        fields = ('username', 'nombre', 'apellido','email','password','fecha_nacimiento', 'rol','tipo_id','identificacion')
-        widgets = {
-            'username': forms.TextInput(attrs={
-                'type': 'text',
-                'placeholder': 'Username'
-            }),
-            'nombre': forms.TextInput(attrs={
-                'type': 'text',
-                'placeholder': 'Nombre'
-            }),
-            'apellido': forms.TextInput(attrs={
-                'type': 'text',
-                'placeholder': 'Apellido'
-            }),
-            'email': forms.TextInput(attrs={
-                'type': 'email',
-                'placeholder': 'Email'
-            }),
-            'password': forms.TextInput(attrs={
-                'type': 'password',
-                'placeholder': 'Contraseña'
-            }),
-            'fecha_nacimiento': forms.DateInput(
-                format='%d/%m/%Y'
-            ),
-        }
-
-        def clean(self):
-            user_found = Usuario.objects.filter(username=self.cleaned_data['username']).exists()
-            if not user_found:
-                self.add_error('username', 'El username está disponible')
-            else:
-                self.add_error('usermane', 'Username en uso')
-
+#class RegisterForm(forms.ModelForm):
+#     class Meta:
+#         model = Usuario
+#         fields = ('username', 'first_name', 'last_name','email','password','fecha_nacimiento', 'rol','tipo_id','identificacion')
+#         widgets = {
+#             'username': forms.TextInput(attrs={
+#                 'type': 'text',
+#                 'placeholder': 'Username'
+#             }),
+#             'first_name': forms.TextInput(attrs={
+#                 'type': 'text',
+#                 'placeholder': 'Nombre'
+#             }),
+#             'last_name': forms.TextInput(attrs={
+#                 'type': 'text',
+#                 'placeholder': 'Apellido'
+#             }),
+#             'email': forms.TextInput(attrs={
+#                 'type': 'email',
+#                 'placeholder': 'Email'
+#             }),
+#             'password': forms.TextInput(attrs={
+#                 'type': 'password',
+#                 'placeholder': 'Contraseña'
+#             }),
+#             'fecha_nacimiento': forms.DateInput(
+#                 format='%d/%m/%Y'
+#             ),
+#         }
+#
+#         def clean(self):
+#             user_found = Usuario.objects.filter(username=self.cleaned_data['username']).exists()
+#             if not user_found:
+#                 self.add_error('username', 'El username está disponible')
+#             else:
+#                 self.add_error('usermane', 'Username en uso')
+#
 
 
 class LoginForm(forms.Form):

@@ -33,8 +33,6 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'main',
     'usuarios',
-    'lugares',
-    'eventos',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -112,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'es-419'
+LANGUAGE_CODE = 'es-co'
 
 TIME_ZONE = 'America/Bogota'
 
@@ -127,3 +125,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+#AUTH_USER_MODEL = 'usuarios.Profile'
