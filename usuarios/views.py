@@ -1,24 +1,16 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import FormView, TemplateView
+from django.views.generic import FormView, CreateView
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth import login, authenticate
 
 from .models import Usuario
 
-class RegisterView(FormView):
-
+class RegisterView(CreateView):
+    model = Usuario
+    fields = '__all__'
     template_name = 'register.html'
-    form_class = RegisterForm
-    success_url = reverse_lazy('login') # La redirección está funcionando
-
-    tipos_id = ['Cédula de Ciudadanía','Targeta de Identidad','Pasaporte','Cédula de Extrangería']
-
-    #def form_valid(self, form):
-    #    print(form.cleaned_data['username'])
-    #    print(form.cleaned_data['nombre'])
-
-
+    success_url = reverse_lazy('login')  # La redirección está funcionando
 
 class LoginView(FormView):
 

@@ -1,3 +1,4 @@
+from django.contrib.admin.utils import help_text_for_field
 from django.db import models
 
 class Permiso (models.Model):
@@ -19,7 +20,7 @@ class Rol (models.Model):
 
 class Usuario(models.Model):
     id_usuario = models.AutoField(primary_key=True)
-    username = models.CharField(max_length=45, unique=True)
+    username = models.CharField(max_length=45, unique=True, help_text="Nombre único que te identifica en Linkage")
     nombre = models.CharField(max_length=60)
     apellido = models.CharField(max_length=60, null=True, blank=True)
     imagen = models.ImageField(null=True, blank=True, upload_to='static/img/profile')
@@ -32,16 +33,15 @@ class Usuario(models.Model):
 
     tipo_id = models.CharField(max_length=2, choices=tipos_id, blank=True, default='T',
                             help_text="Identificador del tipo de identificación")
-    identificacion = models.CharField(max_length=20, default=1)
-    fecha_nacimiento = models.DateField(null=True, blank=True, help_text="formato dd/mm/YYYY ")
-    email = models.EmailField()
+    identificacion = models.CharField(max_length=20, default=1, help_text="Número identificación", unique=True)
+    fecha_nacimiento = models.DateField(null=True, blank=True, help_text="Formato dd/mm/YYYY ")
+    email = models.EmailField(unique=True, help_text="Correo para registrar su cuenta en Linkage")
     password = models.CharField(max_length=200)
-    rol = models.ForeignKey(Rol, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+    rol = models.ForeignKey(Rol, on_delete=models.CASCADE, null=True, blank=True    )
+    created_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        nombre_completo = self.nombre + " " + self.apellido
-        return nombre_completo
+        return self.username
 
 
 
