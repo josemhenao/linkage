@@ -2,13 +2,12 @@ from django import forms
 from django.contrib.admin import widgets
 from  .models import Usuario
 from passlib.hash import sha256_crypt
-
-from django.contrib.auth.models import User
+from django.contrib.auth import login, authenticate
 
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'first_name', 'last_name','email','password','birth_date', 'imagen','tipo_id','identificacion')
+        fields = ('username', 'first_name', 'last_name','email','password', 'birth_date')
         widgets = {
             'username': forms.TextInput(attrs={
                 'type': 'text',
@@ -59,21 +58,12 @@ class LoginForm(forms.Form):
     def clean(self):
         print("entrando en def clean de LoginForm")
         user_found = Usuario.objects.filter(username=self.cleaned_data['username']).exists()
-        print("user_found = ",user_found)
+        print("user_found = ", user_found)
         if not user_found:
-            self.add_error('username', 'User no encontrado')
+            self.add_error('username', 'Usuario no encontrado')
         else:
             user = Usuario.objects.get(username=self.cleaned_data['username'])
-            print("usuario_pasw enconrado: ", user.password)
-            raw_password = self.cleaned_data['password']
-            print("raw_passw", raw_password)
-            if not user.check_password(raw_password):
-                self.add_error('password', 'la contraseña no coincide')
-            else:
-                self.add_error('password','la contraseña coincide')
-
-# class ConsultaForm(forms.Form):
-#     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
-#         'type':'text',
-#         'placeholder': 'Consulta un username'
-#     }))
+            print("usuario_pasw encontrado: ", user.password)
+            print("psw Clean: ", self.cleaned_data['password'])
+            if not user.check_password(self.cleaned_data['password']):
+                self.add_error('password', 'La contraseña no coincide')
