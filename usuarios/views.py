@@ -3,7 +3,6 @@ from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, TemplateView, DeleteView, UpdateView, View, DetailView
 from .forms import LoginForm
 from django.contrib.auth import login, authenticate, logout
-from passlib.hash import pbkdf2_sha256
 from .forms import RegisterForm
 
 from .models import Usuario

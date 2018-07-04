@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.template.defaultfilters import slugify
-from passlib.hash import pbkdf2_sha256
 
 
 class Permiso(models.Model):
@@ -28,7 +26,7 @@ class Usuario(User):
 
     birth_date = models.DateField()
 
-    imagen = models.ImageField(blank=True, null=True, upload_to='usuarios')
+    imagen = models.ImageField(blank=True, null=True, upload_to='usuarios/img/usuarios')
 
     tipos_id = (
             ('CC', 'Cédula de Ciudadanía'),
