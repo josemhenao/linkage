@@ -1,48 +1,112 @@
 from django import forms
 from django.contrib.admin import widgets
 from  .models import Usuario
-from passlib.hash import sha256_crypt
-from django.contrib.auth import login, authenticate
 
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'first_name', 'last_name','email','password', 'birth_date')
+        fields = ('username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen','tipo_id','identificacion')
+
         widgets = {
             'username': forms.TextInput(attrs={
                 'type': 'text',
-                'placeholder': 'Username'
+                'placeholder': 'Username',
+                'required': True,
+                'unique':True,
+                'size': 25
             }),
             'first_name': forms.TextInput(attrs={
                 'type': 'text',
-                'placeholder': 'Nombre'
+                'placeholder': 'Nombre',
+                'required': True,
+                'size': 25,
             }),
             'last_name': forms.TextInput(attrs={
                 'type': 'text',
-                'placeholder': 'Apellido'
+                'placeholder': 'Apellido',
+                'size': 25
             }),
             'email': forms.TextInput(attrs={
                 'type': 'email',
-                'placeholder': 'Email'
+                'placeholder': 'Email',
+                'required': True,
+                'size': 30
             }),
             'password': forms.TextInput(attrs={
                 'type': 'password',
-                'placeholder': 'Contraseña'
+                'placeholder': 'Contraseña',
+                'required': True,
+                'size': 25
             }),
-            'fecha_nacimiento': forms.DateInput(
-                format='%d/%m/%Y'
-            ),
+            'confirm_password': forms.TextInput(attrs={
+                'label':'confirama la contraseña',
+                'type': 'password',
+                'placeholder': 'Confirma la Contraseña',
+                'required': True,
+                'size': 25
+            }),
+            'birth_date': forms.DateInput(attrs={
+                'format' : '%d/%m/%Y',
+                'type':'date',
+                'placeholder':'Formato dd/mm/yyyy',
+                'size': 30
+
+            }),
+            'identificacion':forms.TextInput(attrs={
+                'type':'text',
+                'required': True,
+                'size': 30
+            })
         }
 
-        # def clean(self):
-        #     user_found = Usuario.objects.filter(username=self.cleaned_data['username']).exists()
-        #     if not user_found:
-        #         self.add
-        #         self.add_error('username', 'El username está disponible')
-        #     else:
-        #         self.add_error('usermane', 'Username en uso')
+    def clean(self):
+        print("entra en el clean del form")
+
+        # Validar si el username existe en la DB
+        if self.user_exist():
+            self.add_error('username','Nombre de usuario en uso')
+
+        #Validar si el email se encuentra en la DB
+        if self.email_exist():
+            self.add_error('email', 'El email ingresado se encuentra en uso')
+
+        # Validar si la contraseña coincide con la confirmación de la contraseña
+        if not self.verify_psw():
+            self.add_error('confirm_password', 'Las contraseñas no coinciden')
+
+        # Validar si la Identificaición se encuentra en la DB
+        if self.identificacion_exist():
+            self.add_error('identificacion', 'La Identificación ingresada se encuentra registrada')
 
 
+    def user_exist(self):
+        user = Usuario.objects.filter(username=self.cleaned_data['username'])
+        if user.exists():
+            return True
+        else:
+            return False
+
+    def email_exist(self):
+        email = Usuario.objects.filter(email = self.cleaned_data['email'])
+        if email.exists():
+            return True
+        else:
+            return False
+
+    def verify_psw(self):
+        psw = self.cleaned_data['password']
+        conf_psw = self.cleaned_data['confirm_password']
+        if psw == conf_psw:
+            return True
+        else:
+            return False
+
+    def identificacion_exist(self):
+        identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'])
+        if identificacion.exists():
+            return True
+        else:
+            return False
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
@@ -58,12 +122,9 @@ class LoginForm(forms.Form):
     def clean(self):
         print("entrando en def clean de LoginForm")
         user_found = Usuario.objects.filter(username=self.cleaned_data['username']).exists()
-        print("user_found = ", user_found)
         if not user_found:
             self.add_error('username', 'Usuario no encontrado')
         else:
             user = Usuario.objects.get(username=self.cleaned_data['username'])
-            print("usuario_pasw encontrado: ", user.password)
-            print("psw Clean: ", self.cleaned_data['password'])
             if not user.check_password(self.cleaned_data['password']):
                 self.add_error('password', 'La contraseña no coincide')

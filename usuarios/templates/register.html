@@ -1,24 +1,68 @@
-{% extends "base.html" %}
-{% load static from staticfiles %}
-
-{% block title %}
-Linkage
-{% endblock title %}
-
-{% block content %}
-
+{% extends "base.html" %} {% load static from staticfiles %} {% block title %} Linkage {% endblock title %} {% block content%}
+<br>
 <form method="post">
     {% csrf_token %}
 
-    {{ form.as_p }}
+    <div class="container">
 
-    <input class="btn btn-outline-primary btn-lg" type="submit" value="Registrarse"/>
+        <div class="form-group">
+                <label for="inputAddress">Username: </label>
+                {{ form.username }} {{ form.username.errors }}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="first_name">Nombre: </label>
+                    {{ form.first_name }} {{ form.first_name.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name">Apellido: </label>
+                    {{ form.last_name }} {{ form.last_name.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="birth_date">Fecha nacimiento: </label>
+                <input type="date" value={{ form.birth_date }}
+                {{ form.birth_date.errors }}
+
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email: </label>
+                {{ form.email }} {{ form.email.errors }}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="password">Contraseña: </label>
+                    {{ form.password }} {{ form.password.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="confirm_password">Confirma la contraseña: </label>
+                    {{ form.confirm_password }} {{ form.conform_password.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="imagen">Imagen: </label>
+                {{ form.imagen }} {{ form.imagen.errors }}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="tipo_id">Tipo de Identificación: </label>
+                    {{ form.tipo_id }} {{ form.tipo_id.errors }}
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="last_name">Identificación: </label>
+                    {{ form.identificacion }} {{ form.identificacion.errors }}
+                </div>
+            </div>
+
+        <input class="btn btn-outline-primary btn-lg" type="submit" value="Registrarse" />
 
     </div>
 </form>
 
-{% endblock content %}
-
-{% block scripts %}
-
-{% endblock scripts %}
+{% endblock content %} {% block scripts %} {% endblock scripts %}

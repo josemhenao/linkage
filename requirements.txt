@@ -1,7 +1,11 @@
+argon2-cffi==18.1.0
+cffi==1.11.5
 cymysql==0.9.10
 Django==2.0.6
 django-cymysql==2.0.0
 passlib==1.7.1
 Pillow==5.1.0
+pycparser==2.18
 PyMySQL==0.8.1
 pytz==2018.4
+six==1.11.0

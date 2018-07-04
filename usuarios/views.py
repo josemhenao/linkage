@@ -17,6 +17,7 @@ class RegisterView(FormView):
     def form_valid(self, form):
         user = form.save()
         user.set_password(form.cleaned_data['password'])
+        user.confirm_password = ''
         user.save()
         return super(RegisterView, self).form_valid(form)
 

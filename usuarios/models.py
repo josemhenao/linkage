@@ -22,10 +22,13 @@ class Rol(models.Model):
     def __str__(self):
         return self.rol
 
-
-
 class Usuario(User):
+
+    confirm_password = models.CharField(max_length=60, blank=True, null=True)
+
     birth_date = models.DateField()
+
+    imagen = models.ImageField(blank=True, null=True, upload_to='usuarios')
 
     tipos_id = (
             ('CC', 'Cédula de Ciudadanía'),
@@ -37,5 +40,10 @@ class Usuario(User):
     tipo_id = models.CharField(max_length=2, choices=tipos_id, blank=True, default='T',
                                    help_text="Identificador del tipo de identificación",
                                    )
-    identificacion = models.CharField(max_length=20, default=1, help_text="Número identificación",
+    identificacion = models.CharField(max_length=20, help_text="Número identificación",
                                       unique=True)
+
+    rol = models.ForeignKey(Rol, blank=True, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.username
