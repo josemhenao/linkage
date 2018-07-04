@@ -2,19 +2,55 @@
 
 {% load static %}
 
-{% block title %} Linkage|Lugares {% endblock title %}
+{% block title %}Lugares | Registro{% endblock title %}
 
 {% block content %}
-
-    <form>
+    <form method="post">
         {% csrf_token %}
-
         <div class="container">
-            {{ form.as_p }}
+            <br>
+            <p>Llena los siguientes campos correctamente</p>
+            <br>
+            <div class="form-group">
+                <label for="nombre" class="col-md-2">Nombre del Lugar: </label>
+                {{ form.name }} {{ form.name.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="description" class="col-md-2">Descripción: </label>
+                {{ form.description }} {{ form.description.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="addres" class="col-md-2">Dirección: </label>
+                {{ form.addres }} {{ form.addres.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="city" class="col-md-2">Ciudad: </label>
+                {{ form.city }} {{ form.city.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="capacity" class="col-md-2">Capacidad: </label>
+                {{ form.capacity }} {{ form.capacity.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="img_ppal" class="col-md-2">Imagen Principal: </label>
+                {{ form.img_ppal }} {{ form.img_ppal.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="img_slide" class="col-md-2">Imagen de Slide: </label>
+                {{ form.img_slide }} {{ form.img_slide.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2"></label>
+                <input class="btn btn-outline-primary btn-lg" type="submit" value="Enviar Lugar" />
+            </div>
         </div>
-
-        <input class="btn btn-outline-primary btn-lg" type="submit" value="Registrar Lugar"/>
-
     </form>
 
 {% endblock content %}

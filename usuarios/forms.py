@@ -1,11 +1,10 @@
 from django import forms
-from django.contrib.admin import widgets
 from  .models import Usuario
 
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ('username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen','tipo_id','identificacion')
+        fields = ['username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen','tipo_id','identificacion']
 
         widgets = {
             'username': forms.TextInput(attrs={

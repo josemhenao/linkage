@@ -4,7 +4,6 @@ from django.views.generic import FormView, TemplateView, DeleteView, UpdateView,
 from .forms import LoginForm
 from django.contrib.auth import login, authenticate, logout
 from .forms import RegisterForm
-
 from .models import Usuario
 
 class RegisterView(FormView):
