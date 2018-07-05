@@ -62,11 +62,11 @@ class RegisterForm(forms.ModelForm):
         print("entra en el clean del form")
 
         # Validar si el username existe en la DB
-        if self.user_exist():
+        if self.user_exists():
             self.add_error('username','Nombre de usuario en uso')
 
         #Validar si el email se encuentra en la DB
-        if self.email_exist():
+        if self.email_exists():
             self.add_error('email', 'El email ingresado se encuentra en uso')
 
         # Validar si la contraseña coincide con la confirmación de la contraseña
@@ -74,18 +74,20 @@ class RegisterForm(forms.ModelForm):
             self.add_error('confirm_password', 'Las contraseñas no coinciden')
 
         # Validar si la Identificaición se encuentra en la DB
-        if self.identificacion_exist():
+        if self.identificacion_exists():
             self.add_error('identificacion', 'La Identificación ingresada se encuentra registrada')
 
 
-    def user_exist(self):
+    def user_exists(self):
+        print("Entra en user_exists()")
         user = Usuario.objects.filter(username=self.cleaned_data['username'])
         if user.exists():
             return True
         else:
             return False
 
-    def email_exist(self):
+    def email_exists(self):
+        print("Entra en user_exists()")
         email = Usuario.objects.filter(email = self.cleaned_data['email'])
         if email.exists():
             return True
@@ -93,14 +95,18 @@ class RegisterForm(forms.ModelForm):
             return False
 
     def verify_psw(self):
+        print("Entra en verify_psw()")
         psw = self.cleaned_data['password']
         conf_psw = self.cleaned_data['confirm_password']
+        print("pws: ",psw)
+        print("conf_psw: ",conf_psw)
         if psw == conf_psw:
             return True
         else:
             return False
 
-    def identificacion_exist(self):
+    def identificacion_exists(self):
+        print("Entra en identificacion_exists()")
         identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'])
         if identificacion.exists():
             return True

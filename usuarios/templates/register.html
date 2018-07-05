@@ -8,64 +8,63 @@
     {% csrf_token %}
 
     <div class="container">
-
+        <br>
+        <p><i>Llena los siguientes campos correctamente</i></p>
+        <br>
         <div class="form-group">
-            <label for="inputAddress">Username: </label>
+            <label for="username" class="col-md-2">Username: </label>
             {{ form.username }} {{ form.username.errors }}
         </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="first_name">Nombre: </label>
-                {{ form.first_name }} {{ form.first_name.errors }}
-            </div>
-            <div class="form-group col-md-6">
-                <label for="last_name">Apellido: </label>
-                {{ form.last_name }} {{ form.last_name.errors }}
-            </div>
+        <div class="form-group">
+            <label for="first_name" class="col-md-2">Nombre: </label>
+            {{ form.first_name }} {{ form.first_name.errors }}
+        </div>
+        <div class="form-group">
+            <label for="last_name" class="col-md-2">Apellido: </label>
+            {{ form.last_name }} {{ form.last_name.errors }}
         </div>
 
         <div class="form-group">
-            <label for="birth_date">Fecha nacimiento: </label>
+            <label for="birth_date" class="col-md-2">Fecha nacimiento: </label>
             <input type="date" value={{ form.birth_date }}
             {{ form.birth_date.errors }}
 
         </div>
 
         <div class="form-group">
-            <label for="email">Email: </label>
+            <label for="email" class="col-md-2">Email: </label>
             {{ form.email }} {{ form.email.errors }}
         </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="password">Contraseña: </label>
-                {{ form.password }} {{ form.password.errors }}
-            </div>
-            <div class="form-group col-md-6">
-                <label for="confirm_password">Confirma la contraseña: </label>
-                {{ form.confirm_password }} {{ form.conform_password.errors }}
-            </div>
+        <div class="form-group">
+            <label for="password" class="col-md-2">Contraseña: </label>
+            {{ form.password }} {{ form.password.errors }}
+        </div>
+        <div class="form-group">
+            <label for="confirm_password" class="col-md-2">Confirma la contraseña: </label>
+            {{ form.confirm_password }} {{ form.confirm_password.errors }}
         </div>
 
         <div class="form-group">
-            <label for="imagen">Imagen: </label>
+            <label for="imagen" class="col-md-2">Imagen: </label>
             {{ form.imagen }} {{ form.imagen.errors }}
         </div>
 
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="tipo_id">Tipo de Identificación: </label>
-                {{ form.tipo_id }} {{ form.tipo_id.errors }}
-            </div>
-            <div class="form-group col-md-6">
-                <label for="last_name">Identificación: </label>
-                {{ form.identificacion }} {{ form.identificacion.errors }}
-            </div>
+        <div class="form-group">
+            <label for="tipo_id" class="col-md-2">Tipo de Identificación: </label>
+            {{ form.tipo_id }} {{ form.tipo_id.errors }}
         </div>
 
-        <input class="btn btn-outline-primary btn-lg" type="submit" value="Registrarse"/>
+        <div class="form-group">
+            <label for="last_name" class="col-md-2">Identificación: </label>
+            {{ form.identificacion }} {{ form.identificacion.errors }}
+        </div>
 
+        <div class="form-group">
+            <label class="col-md-2"></label>
+            <input class="btn btn-outline-primary btn-lg" type="submit" value="Registrarse"/>
+        </div>
     </div>
 </form>
 

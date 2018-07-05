@@ -17,6 +17,6 @@ class RegistroLugarView(FormView):
     def form_valid(self, form):
         print("entra en form_valid de RegistroLugarView")
         lugar = form.save()
-        lugar.name = form.cleaned_data['name'].capitalize()
+        lugar.name = form.cleaned_data['name'].title()
         lugar.save()
         return super(RegistroLugarView, self).form_valid(form)

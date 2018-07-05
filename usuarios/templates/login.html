@@ -8,10 +8,26 @@
     {% csrf_token %}
 
     <div class="container">
+        <br>
+        <p><i>Llena los siguientes campos correctamente</i></p>
+        <br>
 
-        {{ form.as_p }}
+        <div class="form-group">
+            <label for="username" class="col-md-2">Username: </label>
+            {{ form.username }} {{ form.username.errors }}
+        </div>
 
-        <input class="btn btn-outline-primary" type="submit" value="Ingresar">
+        <div class="form-group">
+            <label for="password" class="col-md-2">Password: </label>
+            {{ form.password }} {{ form.password.errors }}
+        </div>
+
+        <div class="form-group">
+            <label for="username" class="col-md-2"></label>
+            <input class="btn btn-outline-primary" type="submit" value="Ingresar">
+        </div>
+
     </div>
+
 </form>
 {% endblock content %}

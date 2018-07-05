@@ -32,4 +32,4 @@ class Lugar(models.Model):
     img_3 = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True)
 
     def __str__(self):
-        return self.nombre
+        return self.name
