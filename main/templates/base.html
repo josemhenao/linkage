@@ -8,12 +8,12 @@
 
 
     <title>{% block title %}{% endblock title %}</title>
-    {% load static %}
+    {% load static from staticfiles %}
 
     <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
-    <script src="{% static 'js/popper.min.js'%}"
+    <script src="{% static 'js/popper.min.js' %}"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
 
@@ -28,59 +28,62 @@
 <body>
 
 {% block header %}
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">Linkage</a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">Linkage</a>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'eventos' %}">Eventos<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="{% url 'lugares' %}">Lugares</a>
-            </li>
-        </ul>
-
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
-        </form>
-        
-        <div class="my-2 my-lg-0">
             <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
                 <li class="nav-item active">
-                    <a class="nav-link">Hola, {{ user.username }}</a>
+                    <a class="nav-link" href="{% url 'eventos' %}">Eventos<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+                    <a class="nav-link" href="{% url 'lugares' %}">Lugares</a>
                 </li>
-            {% else %}
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'register' %}">Registrarse<span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-                </li>
-            {% endif %}
             </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            </form>
+
+            <div class="my-2 my-lg-0">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                        <li class="nav-item active">
+                            <a class="nav-link"
+                               href="/usuarios/{{ user.username }}"><img src="{{ usuario.imagen.url }}" width="20" style="border-radius: 6px;"> {{ user.username }}
+                            </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'logout' %}">Salir</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'register' %}">Registrarse<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 {% endblock header %}
 
 {% block content %} {% endblock content %}
 
 {% block footer %}
-<br>
-<!— Footer —>
-<footer class="page-footer font-small unique-color-dark mt-4">
+    <br>
+    <!— Footer —>
+    <footer class="page-footer font-small unique-color-dark mt-4">
     <div style="background-color: #6351ce;">
         <div class="container">
 
@@ -209,9 +212,9 @@
         </div>
         <!— Grid row —>
     </div>
-    {% endblock footer %}
+{% endblock footer %}
 
-    {% block scripts %} {% endblock scripts %}
+{% block scripts %} {% endblock scripts %}
 </body>
 
 </html>

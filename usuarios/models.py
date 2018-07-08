@@ -7,7 +7,6 @@ class Permiso(models.Model):
     permiso = models.CharField(max_length=40)
     descripcion = models.CharField(max_length=400)
 
-
     def __str__(self):
         return self.permiso
 
@@ -26,7 +25,7 @@ class Usuario(User):
 
     birth_date = models.DateField()
 
-    imagen = models.ImageField(blank=True, null=True, upload_to='usuarios/img/usuarios')
+    imagen = models.ImageField(upload_to='usuarios')
 
     tipos_id = (
             ('CC', 'Cédula de Ciudadanía'),
@@ -35,11 +34,11 @@ class Usuario(User):
             ('PS', 'Pasaporte'),
         )
 
-    tipo_id = models.CharField(max_length=2, choices=tipos_id, blank=True, default='T',
+    tipo_id = models.CharField(max_length=2, choices=tipos_id, default='CC',
                                    help_text="Identificador del tipo de identificación",
                                    )
-    identificacion = models.CharField(max_length=20, help_text="Número identificación",
-                                      unique=True)
+    identificacion = models.CharField(max_length=20, help_text="Número identificación"
+                                      )
 
     rol = models.ForeignKey(Rol, blank=True, null=True, on_delete=models.CASCADE)
 

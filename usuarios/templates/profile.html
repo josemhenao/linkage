@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{#{% load static from staticfiles %}#}
+
+{% block title %}
+    Linkage | {{ user }}
+{% endblock title %}
+
+{% block content %}
+
+    <form>
+        <div class="container">
+            <br>
+            <div class="form-row">
+                <label class="col-md-2"></label>
+                <label>{{ user.username }}</label>
+            </div>
+            <br>
+
+            <p>
+                {{ user.profile }}
+            </p>
+
+            <div class="form-row">
+                <label class="col-md-2"></label>
+                <img src="{{ usuario.imagen.url }}" width="200" style="border-radius: 6px">
+            </div>
+
+            <br>
+
+            <div class="form-row">
+                <label class="col-md-2">Nombre</label>
+                <label>{{ usuario.first_name }}</label>
+            </div>
+
+            <div class="form-row">
+                <label class="col-md-2">Apellido</label>
+                <label>{{ user.last_name }}</label>
+            </div>
+
+            <div class="form-row">
+                <label class="col-md-2">Email</label>
+                <label>{{ user.email }}</label>
+            </div>
+
+            <div class="form-row">
+                <label class="col-md-2">Fecha de nacimiento</label>
+                <label>{{ usuario.birth_date }}</label>
+            </div>
+
+            <div class="form-row">
+                <label class="col-md-2">Identificación</label>
+                <label>{{ usuario.tipo_id }} {{ usuario.identificacion }}</label>
+            </div>
+
+            <div class="form-row">
+                <label class="col-md-2"></label>
+                <a href="{% url 'change_password' %}">Cambiar Contraseña</a>
+            </div>
+        </div>
+
+    </form>
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

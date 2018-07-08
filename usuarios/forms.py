@@ -59,7 +59,7 @@ class RegisterForm(forms.ModelForm):
         }
 
     def clean(self):
-        print("entra en el clean del form")
+        print("entra en el clean del RegisterForm")
 
         # Validar si el username existe en la DB
         if self.user_exists():
@@ -87,7 +87,7 @@ class RegisterForm(forms.ModelForm):
             return False
 
     def email_exists(self):
-        print("Entra en user_exists()")
+        print("Verificando si el username existe...")
         email = Usuario.objects.filter(email = self.cleaned_data['email'])
         if email.exists():
             return True
@@ -95,19 +95,22 @@ class RegisterForm(forms.ModelForm):
             return False
 
     def verify_psw(self):
-        print("Entra en verify_psw()")
+        print("Verificando las contraseñas...")
         psw = self.cleaned_data['password']
         conf_psw = self.cleaned_data['confirm_password']
-        print("pws: ",psw)
-        print("conf_psw: ",conf_psw)
         if psw == conf_psw:
             return True
         else:
             return False
 
     def identificacion_exists(self):
-        print("Entra en identificacion_exists()")
-        identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'])
+        print("Verificando si la identificación ya ha sido registrada...")
+        """
+        Verifica si la Identificación ingresada se encuantra segistrada en la base de datos, retorna False
+        si no encuentra el valor y retorna True si encuentra un valor igual y ademas que se trate del mismo
+        tipo de identificación
+        """
+        identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'], tipo_id = self.cleaned_data['tipo_id'])
         if identificacion.exists():
             return True
         else:
@@ -133,3 +136,50 @@ class LoginForm(forms.Form):
             user = Usuario.objects.get(username=self.cleaned_data['username'])
             if not user.check_password(self.cleaned_data['password']):
                 self.add_error('password', 'La contraseña no coincide')
+
+
+class ChangePasswordForm(forms.Form):
+
+    username = forms.CharField(max_length=60, widget=forms.TextInput(attrs={
+        'type':'text',
+        'placeholder':'Username'
+    })),
+
+    old_password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+        'type': 'password',
+        'placeholder': 'Contraseña Anterior'
+    }))
+
+    new_password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+        'type': 'password',
+        'placeholder': 'Nueva Contraseña'
+    }))
+
+    conf_password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
+        'type': 'password',
+        'placeholder': 'Conforma la nueva contraseña'
+    }))
+
+    def clean(self):
+        print("Entra en el clean() del ChangePassword form")
+        user_found = Usuario.objects.filter(username = self.cleaned_data['username'])
+
+        if not user_found.exists():
+            self.add_error('username', 'El username no existe')
+        if not self.check_password(user_found):
+            self.add_error('old_password', 'La contraseña es incorrecta')
+        if not self.verify_psws():
+            self.add_error('conf_password','La confirmación no coincide')
+
+    def check_password(self, user):
+        print("Verificando la contraseña antigua")
+        return user.check_password(self.cleaned_data['old_password'])
+
+    def verify_psws(self):
+        print("Verificando las contraseñas...")
+        psw = self.cleaned_data['new_password']
+        conf_psw = self.cleaned_data['conf_password']
+        if psw == conf_psw:
+            return True
+        else:
+            return False
