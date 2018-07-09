@@ -13,6 +13,7 @@
     <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"
             integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
             crossorigin="anonymous"></script>
+
     <script src="{% static 'js/popper.min.js' %}"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
@@ -22,13 +23,15 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
 
+    <link rel="stylesheet" href="{% static 'css/header.css' %}">
+
 
 </head>
 
 <body>
 
 {% block header %}
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light color_bg-darkblue">
         <a class="navbar-brand" href="/">Linkage</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -84,7 +87,7 @@
     <br>
     <!— Footer —>
     <footer class="page-footer font-small unique-color-dark mt-4">
-    <div style="background-color: #6351ce;">
+    <div class="color_bg-verde_WA">
         <div class="container">
 
             <!— Grid row ->
@@ -101,7 +104,7 @@
 
                     <!— Facebook —>
                     <a class="fb-ic">
-                        <i class="fa fa-facebook white-text mr-4"> </i>
+                        <i class="fa fa-facebook white-text mr-4">Facebook</i>
                     </a>
                     <!— Twitter —>
                     <a class="tw-ic">

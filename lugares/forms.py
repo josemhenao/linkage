@@ -4,7 +4,7 @@ from .models import Lugar
 class RegistroLugarForm(forms.ModelForm):
     class Meta:
         model = Lugar
-        fields = ['name', 'description', 'capacity', 'addres', 'city', 'img_ppal', 'img_slide']
+        fields = ['name', 'description', 'capacity', 'addres', 'city','category', 'img_ppal', 'img_slide']
 
     def clean(self):
         print("Entra en clean() de form")

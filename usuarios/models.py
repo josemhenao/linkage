@@ -25,7 +25,7 @@ class Usuario(User):
 
     birth_date = models.DateField()
 
-    imagen = models.ImageField(upload_to='usuarios')
+    imagen = models.ImageField(upload_to='usuarios/img/profile', default='usuarios/img/profile/default_profile.png')
 
     tipos_id = (
             ('CC', 'Cédula de Ciudadanía'),
