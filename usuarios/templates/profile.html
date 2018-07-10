@@ -12,12 +12,12 @@
             <br>
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <label>{{ user.username }}</label>
+                <label>{{ usuario.username }}</label>
             </div>
             <br>
 
             <p>
-                {{ user.profile }}
+                {{ usuario.profile }}
             </p>
 
             <div class="form-row">
@@ -34,12 +34,12 @@
 
             <div class="form-row">
                 <label class="col-md-2">Apellido</label>
-                <label>{{ user.last_name }}</label>
+                <label>{{ usuario.last_name }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2">Email</label>
-                <label>{{ user.email }}</label>
+                <label>{{ usuario.email }}</label>
             </div>
 
             <div class="form-row">
@@ -54,7 +54,7 @@
 
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <a href="{% url 'change_password' %}">Cambiar Contraseña</a>
+                <a href="{% url 'change_password' usuario.username %}">Cambiar Contraseña</a>
             </div>
         </div>
 

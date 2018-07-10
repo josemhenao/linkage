@@ -41,14 +41,8 @@ class LogoutView(View):
         return redirect(reverse('home'))
 
 
-class AuthView(TemplateView):
-    template_name = 'auth.html'
-
-
-class DeleteUsuarioView(DeleteView):
-    model = Usuario
-    success_url = reverse_lazy('auth.html')
-
+class UsuariosView(TemplateView):
+    template_name = 'usuarios.html'
 
 class UpdateUsuarioView(UpdateView):
     model = Usuario
@@ -56,29 +50,34 @@ class UpdateUsuarioView(UpdateView):
     template_name = 'update_usuario.html'
 
 class ChangePasswordView(FormView):
-    template_name = 'register.html'
+    template_name = 'change_password.html'
     form_class = ChangePasswordForm
-    success_url = reverse_lazy('main')
+    success_url = reverse_lazy('login')
 
     def form_valid(self, form):
+        print("Entra en el form_valid() de ChangePasswordView...")
         user = Usuario.objects.get(username = form.cleaned_data['username'])
+        print("Cambiando Password...")
         user.set_password(form.cleaned_data['new_password'])
+        print("Guardando los cambios realizados...")
         user.save()
-        return super(RegisterView, self).form_valid(form)
-
-# class DetalleUsuarioView(DetailView):
-#     model = Usuario
-#     template_name = 'profile.html'
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-#         context['username'] = Usuario.objects.get(username__in=self.)
-#         return context
+        print("Retornando")
+        return super(ChangePasswordView, self).form_valid(form)
 
 def ProfileView(request, username=None):
     if username:
         user = Usuario.objects.get(username=username)
     else:
         user = request.user
-    args = {'usuario': user}
-    return render(request, 'profile.html', args)
+    context = {'usuario': user}
+    return render(request, 'profile.html', context)
+
+
+def DeleteView(request, username=None):
+    if username:
+        user = Usuario.objects.get(username=username)
+    else:
+        user = request.user
+    context = {'usuario': user}
+    return render(request, 'delete_usuario.html', context)
+

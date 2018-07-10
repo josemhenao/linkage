@@ -6,6 +6,9 @@ class UsuarioAdmin(admin.ModelAdmin):
     list_filter = ('username','identificacion','birth_date','last_login')
 
 
+class PermisoAdmin (admin.ModelAdmin):
+    list_display = ('id_permiso','permiso','descripcion')
+
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Rol)
-admin.site.register(Permiso)
+admin.site.register(Permiso, PermisoAdmin)

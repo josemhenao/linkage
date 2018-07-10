@@ -20,7 +20,7 @@ class RegistroLugarView(FormView):
     def form_valid(self, form):
         print("Entra en form_valid de RegistroLugarView")
         lugar = form.save()
-        lugar.name = form.cleaned_data['name'].title()
+        lugar.nombre = form.cleaned_data['nombre'].title()
         if self.request.user:
             lugar.admin = Usuario.objects.get(username = self.request.user.username)
         lugar.save()

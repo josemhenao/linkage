@@ -1,3 +1,5 @@
+from builtins import print
+
 from django import forms
 from  .models import Usuario
 
@@ -143,7 +145,7 @@ class ChangePasswordForm(forms.Form):
     username = forms.CharField(max_length=60, widget=forms.TextInput(attrs={
         'type':'text',
         'placeholder':'Username'
-    })),
+    }))
 
     old_password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
         'type': 'password',
@@ -157,19 +159,21 @@ class ChangePasswordForm(forms.Form):
 
     conf_password = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
         'type': 'password',
-        'placeholder': 'Conforma la nueva contraseña'
+        'placeholder': 'Confirma la nueva contraseña'
     }))
 
     def clean(self):
-        print("Entra en el clean() del ChangePassword form")
-        user_found = Usuario.objects.filter(username = self.cleaned_data['username'])
-
-        if not user_found.exists():
+        print("Entra en el clean() del ChangePasswordForm")
+        user_exists = Usuario.objects.filter(username = self.cleaned_data['username']).exists()
+        print("exists(): ", user_exists)
+        if not user_exists:
             self.add_error('username', 'El username no existe')
-        if not self.check_password(user_found):
-            self.add_error('old_password', 'La contraseña es incorrecta')
-        if not self.verify_psws():
-            self.add_error('conf_password','La confirmación no coincide')
+        else: #Existe usuario
+            user = Usuario.objects.get(username=self.cleaned_data['username'])
+            if not self.check_password(user):
+                self.add_error('old_password', 'La contraseña es incorrecta')
+            if not self.verify_psws():
+                self.add_error('conf_password','La confirmación no coincide')
 
     def check_password(self, user):
         print("Verificando la contraseña antigua")

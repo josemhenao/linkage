@@ -9,36 +9,41 @@
         {% csrf_token %}
         <div class="container">
             <br>
-            <p><i>Llena los siguientes campos correctamente</i></p>
+            {% if user.is_authenticated %}
+                <p><i>{{ user.first_name }}, llena los siguientes campos correctamente</i></p>
+            {% else %}
+                <p><i>Llena los siguientes campos correctamente</i></p>
+            {% endif %}
+
             <br>
             <div class="form-group">
                 <label for="nombre" class="col-md-2">Nombre del Lugar: </label>
-                {{ form.name }} {{ form.name.errors }}
+                {{ form.nombre }} {{ form.nombre.errors }}
             </div>
 
             <div class="form-group">
                 <label for="description" class="col-md-2">Descripción: </label>
-                {{ form.description }} {{ form.description.errors }}
+                {{ form.descripcion }} {{ form.descripcion.errors }}
             </div>
 
             <div class="form-group">
                 <label for="addres" class="col-md-2">Dirección: </label>
-                {{ form.addres }} {{ form.addres.errors }}
+                {{ form.direccion }} {{ form.direccion.errors }}
             </div>
 
             <div class="form-group">
                 <label for="city" class="col-md-2">Ciudad: </label>
-                {{ form.city }} {{ form.city.errors }}
+                {{ form.ciudad }} {{ form.ciudad.errors }}
             </div>
 
             <div class="form-group">
                 <label for="city" class="col-md-2">Categoría: </label>
-                {{ form.category }} {{ form.category.errors }}
+                {{ form.categoria }} {{ form.categoria.errors }}
             </div>
 
             <div class="form-group">
                 <label for="capacity" class="col-md-2">Capacidad: </label>
-                {{ form.capacity }} {{ form.capacity.errors }}
+                {{ form.capacidad }} {{ form.capacidad.errors }}
             </div>
 
             <div class="form-group">

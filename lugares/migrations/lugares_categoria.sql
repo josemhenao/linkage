@@ -32,3 +32,38 @@ INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
 	'Graduaciones',
 	'Descripción de la categiría Graduaciones'
 );
+
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'História',
+	'Descripción de la categiría História'
+);
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'Cultura',
+	'Descripción de la categiría Cultura'
+);
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'Tecnología',
+	'Descripción de la categiría Tecnología'
+);
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'Celular',
+	'Descripción de la categiría Celular'
+);
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'Smartphone',
+	'Descripción de la categiría Smartphone'
+);
+INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
+	'Concierto',
+	'Descripción de la categiría Concierto'
+);
+
+
+
+
+
+
+
+
+
+
