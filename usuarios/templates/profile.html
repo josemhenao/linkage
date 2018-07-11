@@ -12,51 +12,52 @@
             <br>
             <div class="form-row">
                 <label class="col-md-2">Username</label>
-                <label>{{ usuario.username }}</label>
+                <label>{{ user.username }}</label>
             </div>
             <br>
 
             <div class="form-row">
-                <label class="col-md-2"></label>
-                <label><a href="change_image.html"><img src="{{ usuario.imagen.url }}" width="200" class="border-rad_40"></a></label>
+                <label class="col-md-2">Imagen de Perfil</label>
+                <label><img src="{{ user.imagen.url }}" width="250"></label>
             </div>
 
             <br>
 
             <div class="form-row">
                 <label class="col-md-2"></label>
+                <a href="{% url 'change_user_image' user.username %}">Cambiar imagen</a>
             </div>
 
             <br>
 
             <div class="form-row">
                 <label class="col-md-2">Nombre</label>
-                <label>{{ usuario.first_name }}</label>
+                <label>{{ user.first_name }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2">Apellido</label>
-                <label>{{ usuario.last_name }}</label>
+                <label>{{ user.last_name }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2">Email</label>
-                <label>{{ usuario.email }}</label>
+                <label>{{ user.email }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2">Fecha de nacimiento</label>
-                <label>{{ usuario.birth_date }}</label>
+                <label>{{ user.birth_date }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2">Identificación</label>
-                <label>{{ usuario.tipo_id }} {{ usuario.identificacion }}</label>
+                <label>{{ user.tipo_id }} {{ user.identificacion }}</label>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <a href="{% url 'change_password' usuario.username %}">Cambiar Contraseña</a>
+                <a href="{% url 'change_password' user.username %}">Cambiar Contraseña</a>
             </div>
         </div>
 

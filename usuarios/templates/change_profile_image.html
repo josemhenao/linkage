@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+    Usuarios | Cambiar Imagen
+{% endblock title %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="container">
+            <br>
+            <p><i>Llena los siguientes campos</i></p>
+            <br>
+
+            <div class="form-group">
+                <label class="col-md-2">Imagen Nueva</label>
+                {{ form.imagen }}{{ form.imagen.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2"></label>
+                <input class="btn btn-outline-primary btn-lg" type="submit" value="Cambiar Password"/>
+            </div>
+
+
+        </div>
+
+    </form>
+{% endblock content %}

@@ -187,3 +187,8 @@ class ChangePasswordForm(forms.Form):
             return True
         else:
             return False
+
+class ChangeImageForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['imagen']
