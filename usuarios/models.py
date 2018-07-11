@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 
 class Permiso(models.Model):
@@ -27,7 +27,7 @@ class Rol(models.Model):
         ordering = ['id_rol','rol']
         verbose_name_plural = "Roles"
 
-class Usuario(User):
+class Usuario(AbstractUser):
 
     confirm_password = models.CharField(max_length=60, blank=True, null=True)
 

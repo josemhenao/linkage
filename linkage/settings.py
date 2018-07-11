@@ -136,7 +136,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #STATICFILES_DIR = (os.path.join(BASE_DIR,"static"),)
 
-#AUTH_USER_MODEL = 'usuarios.Profile'
 
 PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
@@ -145,3 +144,5 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
     'django.contrib.auth.hashers.BCryptPasswordHasher',
 ]
+
+AUTH_USER_MODEL = 'usuarios.Usuario'

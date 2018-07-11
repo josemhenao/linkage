@@ -48,6 +48,7 @@ class UpdateUsuarioView(UpdateView):
     model = Usuario
     fields = ['username', 'first_name', 'last_name', 'tipo_id', 'identificacion']
     template_name = 'update_usuario.html'
+    context_object_name = 'user'
 
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'

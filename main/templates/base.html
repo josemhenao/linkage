@@ -24,6 +24,7 @@
             crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{% static 'css/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/assets.css' %}">
 
 
 </head>
@@ -60,8 +61,8 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item active">
                             <a class="nav-link"
-                               href="{% url 'usuario_profile' user.username %}"><img src="{{ usuario.imagen.url }}"
-                                                                                     width="20"
+                               href="{% url 'usuario_profile' user.username %}"><img src="{{ user.imagen.url }}"
+                                                                                     width="30"
                                                                                      style="border-radius: 6px;">
                                 {{ user.username }}
                             </a>

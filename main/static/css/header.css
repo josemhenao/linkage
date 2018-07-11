@@ -9,3 +9,8 @@
 .color_bg-verde_WA{
     background-color: #00d54f;
 }
+
+.profile_img-header {
+    border-radius: 20px;
+    width: 25px;
+}
