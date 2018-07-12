@@ -192,3 +192,9 @@ class ChangeImageForm(forms.ModelForm):
     class Meta:
         model = Usuario
         fields = ['imagen']
+
+    def clean(self):
+        print('--> Entra en el clean() de ChangeImageForm')
+        print('imame: ', self.cleaned_data['imagen'])
+        if self.cleaned_data['imagen'] == '':
+            self.add_error('imagen','Selecciona una imagen')

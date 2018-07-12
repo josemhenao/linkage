@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
+from . import global_vars
 
 
 class Permiso(models.Model):
@@ -33,7 +34,7 @@ class Usuario(AbstractUser):
 
     birth_date = models.DateField()
 
-    imagen = models.ImageField(upload_to='usuarios/img/profile', default='usuarios/img/profile/default_profile.png')
+    imagen = models.ImageField(upload_to='usuarios/img/profile', default = global_vars.DEFAULT_USER_IMAGE)
 
     tipos_id = (
             ('CC', 'Cédula de Ciudadanía'),

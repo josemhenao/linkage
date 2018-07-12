@@ -2,13 +2,18 @@
 {% load static from staticfiles %}
 
 {% block title %}
-Linkage|Auth
+    Linkage|Auth
 {% endblock title %}
 
 {% block content %}
 
     <h1>Auth Page!</h1>
-    <a href="{% url 'delete' %}">Eliminar usuario</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'usuario_profile' user.username %}">Ver mi perfil</a>
+    {% else %}
+        <a href="{% url 'register' %}">Registrarme</a>
+        <a href="{% url 'login' %}">Ingresar</a>
+    {% endif %}
 
 {% endblock content %}
 

@@ -5,7 +5,10 @@ from django.views.generic import FormView, TemplateView, DeleteView, UpdateView,
 from django.shortcuts import render
 from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChangeImageForm
 from .models import Usuario
+from . import global_vars
 
+class UsuariosView(TemplateView):
+    template_name = 'usuarios.html'
 
 class RegisterView(FormView):
     model = Usuario
@@ -34,15 +37,10 @@ class LoginView(FormView):
         login(self.request, user)
         return super(LoginView, self).form_valid(form)
 
-
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect(reverse('home'))
-
-
-class UsuariosView(TemplateView):
-    template_name = 'usuarios.html'
 
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'
@@ -62,26 +60,18 @@ class ChangePasswordView(FormView):
 class ChangeImageView(FormView):
     template_name = 'change_profile_image.html'
     form_class = ChangeImageForm
-    success_url = reverse_lazy('usuario_profile')
-
+    success_url = reverse_lazy('home')
     def form_valid(self, form):
         print("--> Entra en el form_valid() de ChangeImageView...")
-        print("--> kwarg: ",self.kwargs.__str__())
         user = Usuario.objects.get(username = self.kwargs['username'])
-        print("--> User_found: ", user.username)
-        print("--> Cambiando Imagen a ",form.cleaned_data['imagen'])
         user.imagen = form.cleaned_data['imagen']
-        print("--> Guardando los cambios realizados...")
-        user.save()
-        print("--> Retornando")
+
+        if form.cleaned_data['imagen'] != global_vars.DEFAULT_USER_IMAGE:
+            user.save()
+            print("--> Se ha modificado la imagen")
+        else:
+            print("--> No se ha modificado la imagen")
         return super(ChangeImageView, self).form_valid(form)
-
-# class UpdateProfileView (UpdateView):
-#     print("--> Entra en UpdateProfileView...")
-#     model = Usuario
-#     fields = ['username', 'imagen', 'first_name', 'last_name', 'tipo_id', 'identificacion']
-#     template_name_suffix = '_update_form'
-
 
 def ProfileView(request, username=None):
     if username:
@@ -91,6 +81,9 @@ def ProfileView(request, username=None):
     context = {'user': user}
     return render(request, 'profile.html', context)
 
+class ProfileViewClass (UpdateView):
+    model = Usuario
+    context_object_name = 'user'
 
 def DeleteView(request, username=None):
     if username:
