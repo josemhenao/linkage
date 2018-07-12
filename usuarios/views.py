@@ -1,7 +1,8 @@
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import redirect
+from django.test.utils import teardown_databases
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, TemplateView, DeleteView, UpdateView, View
+from django.views.generic import FormView, TemplateView, DetailView, DeleteView, UpdateView, View
 from django.shortcuts import render
 from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChangeImageForm
 from .models import Usuario
@@ -42,6 +43,18 @@ class LogoutView(View):
         logout(request)
         return redirect(reverse('home'))
 
+
+class ProfileView (DetailView):
+    model = Usuario
+    template_name = 'profile.html'
+
+
+class UpdateView(UpdateView):
+    model = Usuario
+    fields = ['first_name','last_name','tipo_id','identificacion']
+    template_name = 'usuarios_update.html'
+    success_url = reverse_lazy('home')
+
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'
     form_class = ChangePasswordForm
@@ -73,19 +86,14 @@ class ChangeImageView(FormView):
             print("--> No se ha modificado la imagen")
         return super(ChangeImageView, self).form_valid(form)
 
-def ProfileView(request, username=None):
-    if username:
-        user = Usuario.objects.get(username=username)
-    else:
-        user = request.user
-    context = {'user': user}
-    return render(request, 'profile.html', context)
 
-class ProfileViewClass (UpdateView):
+class DeleteView(DeleteView):
+    print("--> Entra en DeleteView")
     model = Usuario
-    context_object_name = 'user'
+    success_url = reverse_lazy('home')
 
-def DeleteView(request, username=None):
+
+def DeleteViewFunc(request, username=None):
     if username:
         user = Usuario.objects.get(username=username)
     else:

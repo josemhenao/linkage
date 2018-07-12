@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{#{% load static from staticfiles %}#}
+
+{% block title %}
+    Linkage | {{ user }}
+{% endblock title %}
+
+{% block content %}
+
+    <form method="post">{% csrf_token %}
+
+        <div class="container">
+
+            <br>
+            <p><i>Modifica los campos que desees</i></p>
+            <br>
+
+            <div class="form-group">
+                <label for="first_name" class="col-md-2">Nombre: </label>
+                {{ form.first_name }} {{ form.first_name.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Apellido: </label>
+                {{ form.last_name }} {{ form.last_name.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="tipo_id" class="col-md-2">Tipo de Identificación: </label>
+                {{ form.tipo_id }} {{ form.tipo_id.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Identificación: </label>
+                {{ form.identificacion }} {{ form.identificacion.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2"></label>
+                <input class="btn btn-outline-primary" type="submit" value="Actualizar"/>
+            </div>
+        </div>
+
+    </form>
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

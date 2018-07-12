@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 from . import global_vars
+from django.template.defaultfilters import slugify
 
 
 class Permiso(models.Model):
@@ -30,6 +31,7 @@ class Rol(models.Model):
 
 class Usuario(AbstractUser):
 
+    slug = models.SlugField()
     confirm_password = models.CharField(max_length=60, blank=True, null=True)
 
     birth_date = models.DateField()
@@ -50,6 +52,12 @@ class Usuario(AbstractUser):
                                       )
 
     rol = models.ForeignKey(Rol, blank=True, null=True, on_delete=models.CASCADE)
+
+
+    def save(self,*args,**kwargs):
+        self.slug = slugify(self.username)
+        super (Usuario,self).save(*args,**kwargs)
+
 
     def __str__(self):
         return self.username
