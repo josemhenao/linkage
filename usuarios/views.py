@@ -1,15 +1,17 @@
 from django.contrib.auth import login, authenticate, logout
 from django.shortcuts import redirect
-from django.test.utils import teardown_databases
+from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
 from django.views.generic import FormView, TemplateView, DetailView, DeleteView, UpdateView, View
-from django.shortcuts import render
+
+from . import global_vars
 from .forms import LoginForm, RegisterForm, ChangePasswordForm, ChangeImageForm
 from .models import Usuario
-from . import global_vars
+
 
 class UsuariosView(TemplateView):
     template_name = 'usuarios.html'
+
 
 class RegisterView(FormView):
     model = Usuario
@@ -23,6 +25,7 @@ class RegisterView(FormView):
         user.confirm_password = ''
         user.save()
         return super(RegisterView, self).form_valid(form)
+
 
 class LoginView(FormView):
     template_name = 'login.html'
@@ -38,22 +41,24 @@ class LoginView(FormView):
         login(self.request, user)
         return super(LoginView, self).form_valid(form)
 
+
 class LogoutView(View):
     def get(self, request, *args, **kwargs):
         logout(request)
         return redirect(reverse('home'))
 
 
-class ProfileView (DetailView):
+class ProfileView(DetailView):
     model = Usuario
     template_name = 'profile.html'
 
 
 class UpdateView(UpdateView):
     model = Usuario
-    fields = ['first_name','last_name','tipo_id','identificacion']
+    fields = ['first_name', 'last_name', 'tipo_id', 'identificacion']
     template_name = 'usuarios_update.html'
     success_url = reverse_lazy('home')
+
 
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'
@@ -62,7 +67,7 @@ class ChangePasswordView(FormView):
 
     def form_valid(self, form):
         print("Entra en el form_valid() de ChangePasswordView...")
-        user = Usuario.objects.get(username = form.cleaned_data['username'])
+        user = Usuario.objects.get(username=form.cleaned_data['username'])
         print("Cambiando Password...")
         user.set_password(form.cleaned_data['new_password'])
         print("Guardando los cambios realizados...")
@@ -70,13 +75,15 @@ class ChangePasswordView(FormView):
         print("Retornando")
         return super(ChangePasswordView, self).form_valid(form)
 
+
 class ChangeImageView(FormView):
     template_name = 'change_profile_image.html'
     form_class = ChangeImageForm
     success_url = reverse_lazy('home')
+
     def form_valid(self, form):
         print("--> Entra en el form_valid() de ChangeImageView...")
-        user = Usuario.objects.get(username = self.kwargs['username'])
+        user = Usuario.objects.get(username=self.kwargs['username'])
         user.imagen = form.cleaned_data['imagen']
 
         if form.cleaned_data['imagen'] != global_vars.DEFAULT_USER_IMAGE:
@@ -100,4 +107,3 @@ def DeleteViewFunc(request, username=None):
         user = request.user
     context = {'usuario': user}
     return render(request, 'delete_usuario.html', context)
-
