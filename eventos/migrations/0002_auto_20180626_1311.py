@@ -9,7 +9,7 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('lugares', '0002_lugar_administrador'),
+        ('lugar', '0002_lugar_administrador'),
         ('usuarios', '0001_initial'),
         ('eventos', '0001_initial'),
     ]
@@ -28,6 +28,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='evento',
             name='lugar',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='lugares.Lugar'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='lugar.Lugar'),
         ),
     ]

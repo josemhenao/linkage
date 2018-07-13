@@ -1,5 +1,6 @@
 from django.db import models
 from usuarios.models import Usuario
+from .global_vars import DEFAULT_LUGAR_IMAGE
 
 
 class Categoria(models.Model):
@@ -39,18 +40,18 @@ class Lugar(models.Model):
                             )
     admin = models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True, blank=True)
 
-    img_ppal = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True,
+    img_ppal = models.ImageField(upload_to='lugar/img/lugar', null=True, blank=True,
                                  help_text="Imagen principal del Lugar",
-                                 default='lugares/img/lugares/default_lugar_ppal.png'
+                                 default = DEFAULT_LUGAR_IMAGE
                                  )
-    img_slide = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True,
+    img_slide = models.ImageField(upload_to='lugar/img/lugar', null=True, blank=True,
                                   help_text="Imagen de un tamaño 1000 x 330 px, para mostrar en el slide de la"
                                             " sección Lugares")
 
-    # Revisar la mejor manera almacenar las imagenes de modo que sea n numero de imagenes
-    img_1 = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True)
-    img_2 = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True)
-    img_3 = models.ImageField(upload_to='lugares/img/lugares', null=True, blank=True)
+    # Revisar la mejor manera almacenar las imagenes de modo que sea 'n' numero de imagenes
+    img_1 = models.ImageField(upload_to='lugar/img/lugar', null=True, blank=True)
+    img_2 = models.ImageField(upload_to='lugar/img/lugar', null=True, blank=True)
+    img_3 = models.ImageField(upload_to='lugar/img/lugar', null=True, blank=True)
 
     class Meta:
         verbose_name='Lugar'

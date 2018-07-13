@@ -15,19 +15,17 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'registrar_lugar' %}">Agregar un lugar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Mis lugares</a>
+                </li>
             {% endif %}
-
-            <li class="nav-item">
-                <a class="nav-link" href="#">Mis lugares</a>
-            </li>
-
         </ul>
     </div>
 
     <br>
 
     <div class="container">
-        <div class="card-deck">
+        <div class="card-group">
 
             {% for lugar in object_list %}
                 <div class="card">
@@ -35,13 +33,13 @@
                         <img class="card-img-top" src="{{ lugar.img_ppal.url }}">
                     {% endif %}
                     <div class="card-body">
-                        <h5 class="card-title">{{ lugar.name }}</h5>
+                        <h5 class="card-title">{{ lugar.nombre }}</h5>
                         <p class="card-text">
-                            {{ lugar.description }}
+                            {{ lugar.descripcion }}
                         </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">{{ lugar.city }}</small>
+                        <small class="text-muted">{{ lugar.cuidad }}</small>
                     </div>
                 </div>
             {% endfor %}

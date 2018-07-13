@@ -48,8 +48,7 @@ class Usuario(AbstractUser):
     tipo_id = models.CharField(max_length=2, choices=tipos_id, default='CC',
                                    help_text="Identificador del tipo de identificación",
                                    )
-    identificacion = models.CharField(max_length=20, help_text="Número identificación"
-                                      )
+    identificacion = models.CharField(max_length=20, help_text="Número identificación"                              )
 
 #   rol = models.ForeignKey(Rol, blank=True, null=True, on_delete=models.CASCADE)
 
@@ -61,5 +60,5 @@ class Usuario(AbstractUser):
         return self.username
 
     class Meta:
-        ordering = ['identificacion']
-        verbose_name_plural = "Usuarios"
+        ordering = ['username']
+        base_manager_name ="Usuario"

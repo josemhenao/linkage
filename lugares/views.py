@@ -8,7 +8,7 @@ from django.urls import reverse_lazy
 class LugaresView(ListView):
     model = Lugar
     template_name = 'lugares.html'
-    paginate_by = 10
+    paginate_by = 9
 
 
 class RegistroLugarView(FormView):
