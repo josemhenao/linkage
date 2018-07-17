@@ -29,7 +29,6 @@ from django.template.defaultfilters import slugify
 #         verbose_name_plural = "Roles"
 
 class Usuario(AbstractUser):
-
     slug = models.SlugField()
 
     confirm_password = models.CharField(max_length=60, blank=True, null=True)
@@ -50,8 +49,6 @@ class Usuario(AbstractUser):
                                    )
     identificacion = models.CharField(max_length=20, help_text="Número identificación"                              )
 
-#   rol = models.ForeignKey(Rol, blank=True, null=True, on_delete=models.CASCADE)
-
     def save(self,*args,**kwargs):
         self.slug = slugify(self.username)
         super (Usuario,self).save(*args,**kwargs)
@@ -61,4 +58,3 @@ class Usuario(AbstractUser):
 
     class Meta:
         ordering = ['username']
-        base_manager_name ="Usuario"

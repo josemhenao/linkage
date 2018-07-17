@@ -5,63 +5,79 @@
 {% block title %}Lugares | Registro{% endblock title %}
 
 {% block content %}
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        <div class="container">
-            <br>
-            {% if user.is_authenticated %}
-                <p><i>{{ user.first_name }}, llena los siguientes campos correctamente</i></p>
-            {% else %}
-                <p><i>Llena los siguientes campos correctamente</i></p>
-            {% endif %}
 
-            <br>
-            <div class="form-group">
-                <label for="nombre" class="col-md-2">Nombre del Lugar: </label>
-                {{ form.nombre }} {{ form.nombre.errors }}
+    {% if user.is_authenticated %}
+        <p><i>{{ user.first_name }}, llena los siguientes campos correctamente</i></p>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="container">
+                <br>
+
+
+                <br>
+                <div class="form-group">
+                    <label for="nombre" class="col-md-2">Nombre del Lugar: </label>
+                    {{ form.nombre }} {{ form.nombre.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="description" class="col-md-2">Descripción: </label>
+                    {{ form.descripcion }} {{ form.descripcion.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="addres" class="col-md-2">Dirección: </label>
+                    {{ form.direccion }} {{ form.direccion.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="city" class="col-md-2">Ciudad: </label>
+                    {{ form.ciudad }} {{ form.ciudad.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="city" class="col-md-2">Categoría: </label>
+                    {{ form.categoria }} {{ form.categoria.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="capacity" class="col-md-2">Capacidad: </label>
+                    {{ form.capacidad }} {{ form.capacidad.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="img_ppal" class="col-md-2">Imagen Principal: </label>
+                    {{ form.img_ppal }} {{ form.img_ppal.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label for="img_slide" class="col-md-2">Imagen de Slide: </label>
+                    {{ form.img_slide }} {{ form.img_slide.errors }}
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2"></label>
+                    <input class="btn btn-outline-primary btn-lg" type="submit" value="Enviar Lugar"/>
+                </div>
+            </div>
+        </form>
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            Debes tener sesión iniciada para crear un Lugar
+        </div>
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <a class="btn btn-outline-primary" href="{% url 'usuarios_register' %}">Registrarme</a>
             </div>
 
-            <div class="form-group">
-                <label for="description" class="col-md-2">Descripción: </label>
-                {{ form.descripcion }} {{ form.descripcion.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="addres" class="col-md-2">Dirección: </label>
-                {{ form.direccion }} {{ form.direccion.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="city" class="col-md-2">Ciudad: </label>
-                {{ form.ciudad }} {{ form.ciudad.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="city" class="col-md-2">Categoría: </label>
-                {{ form.categoria }} {{ form.categoria.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="capacity" class="col-md-2">Capacidad: </label>
-                {{ form.capacidad }} {{ form.capacidad.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="img_ppal" class="col-md-2">Imagen Principal: </label>
-                {{ form.img_ppal }} {{ form.img_ppal.errors }}
-            </div>
-
-            <div class="form-group">
-                <label for="img_slide" class="col-md-2">Imagen de Slide: </label>
-                {{ form.img_slide }} {{ form.img_slide.errors }}
-            </div>
-
-            <div class="form-group">
-                <label class="col-md-2"></label>
-                <input class="btn btn-outline-primary btn-lg" type="submit" value="Enviar Lugar" />
+            <div class="col-md-auto">
+                <a class="btn btn-outline-primary" href="{% url 'usuarios_login' %}">Iniciar sesión</a>
             </div>
         </div>
-    </form>
+
+
+    {% endif %}
+
 
 {% endblock content %}
 
