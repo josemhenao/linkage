@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Lugares | Detalle
+{% endblock title %}
+
+{% block content %}
+    {% if lugar %}
+        <form>
+            <div class="container">
+                <br>
+                <div class="form-row">
+                    <label class="col-md-2">Id del lugar</label>
+                    <label>{{ lugar.id_lugar }}</label>
+                </div>
+                <div class="form-row">
+                    <label class="col-md-2">Nombre del lugar</label>
+                    <label>{{ lugar.nombre }}</label>
+                </div>
+                <br>
+
+                <div class="form-row">
+                    <label class="col-md-2">Imagen Principal</label>
+                    <label><img src="{{ lugar.img_ppal.url }}" width="750"></label>
+                </div>
+
+                <br>
+
+                <div class="form-row">
+                    <label class="col-md-2"></label>
+                    <a href="{% url 'lugares_change_image' lugar.slug %}">Cambiar imagen</a>
+                </div>
+
+                <br>
+
+                <div class="form-row">
+                    <label class="col-md-2">Nombre</label>
+                    <label>{{ user.first_name }}</label>
+                </div>
+
+                <div class="form-row">
+                    <label class="col-md-2">Apellido</label>
+                    <label>{{ user.last_name }}</label>
+                </div>
+
+                <div class="form-row">
+                    <label class="col-md-2">Email</label>
+                    <label>{{ user.email }}</label>
+                </div>
+
+                <div class="form-row">
+                    <label class="col-md-2">Fecha de nacimiento</label>
+                    <label>{{ user.birth_date }}</label>
+                </div>
+
+                <div class="form-row">
+                    <label class="col-md-2">Identificación</label>
+                    <label>{{ user.tipo_id }} {{ user.identificacion }}</label>
+                </div>
+
+                <div class="form-row">
+                    <label class="col-md-2"></label>
+                    <a href="{% url 'usuarios_change_password' user.username %}">Cambiar Contraseña</a>
+
+                </div>
+
+                {#            <div class="form-row">#}
+                {#                <label class="col-md-2"></label>#}
+                {#                <a href="{% url 'usuarios_delete' user.slug %}">Eliminar cuenta</a>#}
+                {##}
+                {#            </div>#}
+
+                <div class="form-row">
+                    <label class="col-md-2"></label>
+                    <a href="{% url 'usuarios_update' user.slug %}">Actualizar datos</a>
+
+                </div>
+            </div>
+
+        </form>
+    {% else %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+
+{% endblock content %}

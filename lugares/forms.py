@@ -36,3 +36,14 @@ class RegistroLugarForm(forms.ModelForm):
         else:
             return False
 
+
+class ChangeImageForm(forms.ModelForm):
+    class Meta:
+        model = Lugar
+        fields = ['img_ppal']
+
+    def clean(self):
+        print('--> Entra en el clean() de ChangeImageForm')
+        print('image: ', self.cleaned_data['img_ppal'])
+        if self.cleaned_data['img_ppal'] == '':
+            self.add_error('img_ppal','Selecciona una imagen')

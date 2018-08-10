@@ -17,7 +17,7 @@ class RegisterView(FormView):
     model = Usuario
     form_class = RegisterForm
     template_name = 'register.html'
-    success_url = reverse_lazy('login')  # La redirección está funcionando
+    success_url = reverse_lazy('usuarios_login')  # La redirección está funcionando
 
     def form_valid(self, form):
         user = form.save()
@@ -63,7 +63,7 @@ class UpdateView(UpdateView):
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'
     form_class = ChangePasswordForm
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('usuarios_login')
 
     def form_valid(self, form):
         print("Entra en el form_valid() de ChangePasswordView...")

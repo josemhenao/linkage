@@ -91,19 +91,3 @@ INSERT INTO USUARIOS_PERMISO (PERMISO, DESCRIPCION) VALUES ('Puede Modificar Per
 INSERT INTO USUARIOS_PERMISO (PERMISO, DESCRIPCION) VALUES ('Puede Ver Permisos',
 	'Este permiso se concede en la plataforma para que un usuario pueda Ver un Permiso en Linkage'
 	);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

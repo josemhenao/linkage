@@ -9,7 +9,7 @@
 
     <h1>Auth Page!</h1>
     {% if user.is_authenticated %}
-        <a href="{% url 'usuarios_profile' user.username %}">Ver mi perfil</a>
+        <a href="{% url 'usuarios_profile' user.slug %}">Ver mi perfil</a>
     {% else %}
         <a href="{% url 'usuarios_register' %}">Registrarme</a>
         <a href="{% url 'usuarios_login' %}">Ingresar</a>

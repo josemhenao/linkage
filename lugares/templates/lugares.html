@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 
-{% load static from staticfiles %}
-
 {% block title %}
     Lugares | Listado
 {% endblock title %}
@@ -31,7 +29,9 @@
                 <div class="col-md-4">
                     <div class="card">
                         {% if lugar.img_ppal %}
-                            <img class="card-img-top" src="{{ lugar.img_ppal.url }}">
+                            <a href="{% url 'lugares_detail' lugar.slug %}"><img class="card-img-top"
+                                                                                 src="{{ lugar.img_ppal.url }}">
+                            </a>
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ lugar.nombre }}</h5>
@@ -43,7 +43,7 @@
                             <small class="text-muted">{{ lugar.ciudad }}</small>
                         </div>
                     </div>
-                <br>
+                    <br>
                 </div>
 
             {% endfor %}
