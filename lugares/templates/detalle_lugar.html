@@ -10,12 +10,8 @@
             <div class="container">
                 <br>
                 <div class="form-row">
-                    <label class="col-md-2">Id del lugar</label>
-                    <label>{{ lugar.id_lugar }}</label>
-                </div>
-                <div class="form-row">
-                    <label class="col-md-2">Nombre del lugar</label>
-                    <label>{{ lugar.nombre }}</label>
+                     <label class="col-md-2"></label>
+                    <h1>{{ lugar.nombre }}</h1>
                 </div>
                 <br>
 
@@ -27,54 +23,38 @@
                 <br>
 
                 <div class="form-row">
-                    <label class="col-md-2"></label>
-                    <a href="{% url 'lugares_change_image' lugar.slug %}">Cambiar imagen</a>
-                </div>
-
-                <br>
-
-                <div class="form-row">
-                    <label class="col-md-2">Nombre</label>
-                    <label>{{ user.first_name }}</label>
+                    <label class="col-md-2">Descripción</label>
+                    <label>{{ lugar.descripcion }}</label>
                 </div>
 
                 <div class="form-row">
-                    <label class="col-md-2">Apellido</label>
-                    <label>{{ user.last_name }}</label>
+                    <label class="col-md-2">Dirección</label>
+                    <label>{{ lugar.direccion}}</label>
                 </div>
 
                 <div class="form-row">
-                    <label class="col-md-2">Email</label>
-                    <label>{{ user.email }}</label>
+                    <label class="col-md-2">Ciudad</label>
+                    <label>{{ lugar.ciudad }}</label>
                 </div>
 
                 <div class="form-row">
-                    <label class="col-md-2">Fecha de nacimiento</label>
-                    <label>{{ user.birth_date }}</label>
+                    <label class="col-md-2">Capacidad</label>
+                    <label>{{ lugar.capacidad }}</label>
                 </div>
 
                 <div class="form-row">
-                    <label class="col-md-2">Identificación</label>
-                    <label>{{ user.tipo_id }} {{ user.identificacion }}</label>
+                    <label class="col-md-2">Categorías</label>
+                    <label>{{ lugar.categoria }}</label>
                 </div>
 
-                <div class="form-row">
-                    <label class="col-md-2"></label>
-                    <a href="{% url 'usuarios_change_password' user.username %}">Cambiar Contraseña</a>
+                {# Agregar la validación de administrador de lugar #}
 
-                </div>
+{#                <div class="form-row">#}
+{#                    <label class="col-md-2"></label>#}
+{#                    <a href="{% url 'usuarios_update' user.slug %}">Actualizar datos</a>#}
+{##}
+{#                </div>#}
 
-                {#            <div class="form-row">#}
-                {#                <label class="col-md-2"></label>#}
-                {#                <a href="{% url 'usuarios_delete' user.slug %}">Eliminar cuenta</a>#}
-                {##}
-                {#            </div>#}
-
-                <div class="form-row">
-                    <label class="col-md-2"></label>
-                    <a href="{% url 'usuarios_update' user.slug %}">Actualizar datos</a>
-
-                </div>
             </div>
 
         </form>
