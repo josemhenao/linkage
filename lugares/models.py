@@ -6,9 +6,7 @@ from .global_vars import DEFAULT_LUGAR_IMAGE
 
 class Categoria(models.Model):
     id_categoria = models.AutoField(primary_key=True)
-
     categoria = models.CharField(max_length=60, help_text="Nombre la categoría", unique=True)
-
     descripcion = models.CharField(max_length=400, help_text="Descripción de la categoría")
 
     class Meta:
