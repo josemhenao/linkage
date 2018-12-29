@@ -5,7 +5,7 @@ from .views import UsuariosView, RegisterView, LoginView, ChangePasswordView, Ch
     LogoutView, ProfileView, DeleteView, ProfileView, DeleteView, UpdateView
 
 urlpatterns = [
-    path('', UsuariosView.as_view(), name='usuarios'),
+    #path('', UsuariosView.as_view(), name='usuarios'),
     path('register', RegisterView.as_view(), name='usuarios_register'),
     path('login', LoginView.as_view(), name='usuarios_login'),
     path('logout', LogoutView.as_view(), name='usuarios_logout'),

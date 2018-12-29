@@ -51,9 +51,13 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="{% url 'lugares' %}">Lugares</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'usuarios' %}">Usuarios</a>
-                </li>
+
+{#                {% if not user.is_authenticated %}#}
+{#                <li class="nav-item active">#}
+{#                    <a class="nav-link" href="{% url 'usuarios' %}">Usuarios</a>#}
+{#                </li>#}
+{#                {% endif %}#}
+
             </ul>
 
             <form class="form-inline my-2 my-lg-0">
