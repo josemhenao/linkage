@@ -11,25 +11,19 @@
         <div class="container">
             <br>
             <div class="form-row">
-                <label class="col-md-2">Username</label>
-                <label>{{ user.username }}</label>
-            </div>
-            <br>
-
-            <div class="form-row">
-                <label class="col-md-2">Imagen de Perfil</label>
+                <label class="col-md-2"></label>
                 <label><img src="{{ user.imagen.url }}" width="250"></label>
             </div>
-
-            <br>
-
             <div class="form-row">
                 <label class="col-md-2"></label>
                 <a href="{% url 'usuarios_change_image' user.username %}">Cambiar imagen</a>
             </div>
 
             <br>
-
+            <div class="form-row">
+                <label class="col-md-2">Username</label>
+                <label>{{ user.username }}</label>
+            </div>
             <div class="form-row">
                 <label class="col-md-2">Nombre</label>
                 <label>{{ user.first_name }}</label>

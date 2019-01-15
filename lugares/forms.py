@@ -4,7 +4,7 @@ from .models import Lugar, Categoria
 class RegistroLugarForm(forms.ModelForm):
     class Meta:
         model = Lugar
-        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad','categoria', 'img_ppal', 'img_slide']
+        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad','categoria', 'img_ppal','imagenes']
 
         widgets ={
             'categoria': forms.CheckboxSelectMultiple()

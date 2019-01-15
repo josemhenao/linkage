@@ -55,10 +55,9 @@ class ProfileView(DetailView):
 
 class UpdateView(UpdateView):
     model = Usuario
-    fields = ['first_name', 'last_name', 'tipo_id', 'identificacion']
+    fields = ['username','first_name', 'last_name', 'tipo_id', 'identificacion']
     template_name = 'usuarios_update.html'
-    success_url = reverse_lazy('home')
-
+    success_url = reverse_lazy('usuarios_profile', kwargs={'slug':'josem.henao'})
 
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'

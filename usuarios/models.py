@@ -37,17 +37,18 @@ class Usuario(AbstractUser):
 
     imagen = models.ImageField(upload_to='usuarios/img/profile', default = global_vars.DEFAULT_USER_IMAGE)
 
-    tipos_id = (
-            ('CC', 'Cédula de Ciudadanía'),
-            ('TI', 'Tarjeta de Identidad'),
-            ('CE', 'Cédula de Extrangería'),
-            ('PS', 'Pasaporte'),
-        )
+    # No se hace necesario el uso de Identificación
+    # tipos_id = (
+    #         ('CC', 'Cédula de Ciudadanía'),
+    #         ('TI', 'Tarjeta de Identidad'),
+    #         ('CE', 'Cédula de Extrangería'),
+    #         ('PS', 'Pasaporte'),
+    #     )
 
-    tipo_id = models.CharField(max_length=2, choices=tipos_id, default='CC',
-                                   help_text="Identificador del tipo de identificación",
-                                   )
-    identificacion = models.CharField(max_length=20, help_text="Número identificación"                              )
+    #tipo_id = models.CharField(max_length=2, choices=tipos_id, default='CC',
+    #                             help_text="Identificador del tipo de identificación",
+    #                              )
+    #identificacion = models.CharField(max_length=20, help_text="Número identificación"                              )
 
     def save(self,*args,**kwargs):
         self.slug = slugify(self.username)

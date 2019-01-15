@@ -8,8 +8,12 @@
 
 .color_bg-verde_WA{
     background-color: #00d54f;
+
 }
 
+.color_bg-verde_WA:hover{
+    background-color: blue;
+}
 .profile_img-header {
     border-radius: 20px;
     width: 25px;

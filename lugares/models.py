@@ -1,6 +1,7 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 from usuarios.models import Usuario
+from main.models import Imagen
 from .global_vars import DEFAULT_LUGAR_IMAGE
 
 
@@ -48,14 +49,16 @@ class Lugar(models.Model):
                                  help_text="Imagen principal del Lugar",
                                  default=DEFAULT_LUGAR_IMAGE
                                  )
-    img_slide = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True,
-                                  help_text="Imagen de un tamaño 1000 x 330 px, para mostrar en el slide de la"
-                                            " sección Lugares")
+    imagenes = models.ManyToManyField(to=Imagen, verbose_name="Lista de imagenes", null=True, blank=True)
+    # Verificar la importancia de esto (ver si es mejor reescalar la imagen ppal)
+    # img_slide = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True,
+    #                               help_text="Imagen de un tamaño 1000 x 330 px, para mostrar en el slide de la"
+    #                                         " sección Lugares")
 
     # Revisar la mejor manera almacenar las imagenes de modo que sea 'n' numero de imagenes
-    img_1 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
-    img_2 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
-    img_3 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
+    #img_1 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
+    #img_2 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
+    #img_3 = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True)
 
     class Meta:
         verbose_name = 'Lugar'

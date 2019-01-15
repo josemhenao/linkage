@@ -6,7 +6,7 @@ from  .models import Usuario
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen','tipo_id','identificacion']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen']
 
         widgets = {
             'username': forms.TextInput(attrs={
@@ -53,15 +53,19 @@ class RegisterForm(forms.ModelForm):
                 'size': 30
 
             }),
-            'identificacion':forms.TextInput(attrs={
-                'type':'text',
-                'required': True,
-                'size': 30
-            })
+            # 'identificacion':forms.TextInput(attrs={
+            #     'type':'text',
+            #     'required': True,
+            #     'size': 30
+            # })
         }
 
     def clean(self):
         print("entra en el clean del RegisterForm")
+
+        # Validar si el username contiene caracteres extraños
+        if self.has_wrong_chars():
+            self.add_error('username', 'No se admiten puntos en el username')
 
         # Validar si el username existe en la DB
         if self.user_exists():
@@ -76,13 +80,20 @@ class RegisterForm(forms.ModelForm):
             self.add_error('confirm_password', 'Las contraseñas no coinciden')
 
         # Validar si la Identificaición se encuentra en la DB
-        if self.identificacion_exists():
-            self.add_error('identificacion', 'La Identificación ingresada se encuentra registrada')
+        #if self.identificacion_exists():
+        #   self.add_error('identificacion', 'La Identificación ingresada se encuentra registrada')
 
+
+    def has_wrong_chars(self):
+        print('Verificando usename,{}'.format(self.cleaned_data['username']))
+        if '.' in self.cleaned_data['username']:
+            return True
+        else:
+            return False
 
     def user_exists(self):
-        print("Entra en user_exists()")
-        user = Usuario.objects.filter(username=self.cleaned_data['username'])
+        print("Entra en user_exists(): {}")
+        user = Usuario.objects.filter(username = self.cleaned_data['username'])
         if user.exists():
             return True
         else:
