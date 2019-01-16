@@ -9,8 +9,12 @@
 
     <form method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
-        <input type="submit" value="Confirm"/>
+        <div class="container">
+            <div class="form-group">
+                <p>Are you sure you want to delete "{{ object }}"?</p>
+                <input class="btn btn-outline-primary" type="submit" value="Confirmar"/>
+            </div>
+        </div>
     </form>
 
 {% endblock content %}

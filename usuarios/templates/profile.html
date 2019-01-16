@@ -49,17 +49,16 @@
 
             </div>
 
-{#            <div class="form-row">#}
-{#                <label class="col-md-2"></label>#}
-{#                <a href="{% url 'usuarios_delete' user.slug %}">Eliminar cuenta</a>#}
-{##}
-{#            </div>#}
-
             <div class="form-row">
                 <label class="col-md-2"></label>
                 <a href="{% url 'usuarios_update' user.id %}">Actualizar datos</a>
-
             </div>
+
+            <div class="form-row">
+                <label class="col-md-2"></label>
+                <a href="{% url 'usuarios_delete' user.id %}">Eliminar cuenta</a>
+            </div>
+
         </div>
     </form>
 
