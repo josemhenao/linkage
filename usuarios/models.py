@@ -31,8 +31,8 @@ from django.template.defaultfilters import slugify
 
 class Usuario(AbstractUser):
 
-    # Verificar la conveniencia de este campo (mejor poner un ojito en el template de modo que se vea la contraseña ingresada)
-    confirm_password = models.CharField(max_length=60, blank=True, null=True)
+    # # Verificar la conveniencia de este campo (mejor poner un ojito en el template de modo que se vea la contraseña ingresada)
+    # confirm_password = models.CharField(max_length=60, blank=True, null=True)
 
     birth_date = models.DateField()
 

@@ -6,7 +6,7 @@ from  .models import Usuario
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['username', 'first_name', 'last_name', 'email', 'password','confirm_password', 'birth_date','imagen']
+        fields = ['username', 'first_name', 'last_name', 'email', 'password', 'birth_date','imagen']
 
         widgets = {
             'username': forms.TextInput(attrs={
@@ -39,13 +39,13 @@ class RegisterForm(forms.ModelForm):
                 'required': True,
                 'size': 25
             }),
-            'confirm_password': forms.TextInput(attrs={
-                'label':'confirama la contraseña',
-                'type': 'password',
-                'placeholder': 'Confirma la Contraseña',
-                'required': True,
-                'size': 25
-            }),
+            # 'confirm_password': forms.TextInput(attrs={
+            #     'label':'confirama la contraseña',
+            #     'type': 'password',
+            #     'placeholder': 'Confirma la Contraseña',
+            #     'required': True,
+            #     'size': 25
+            # }),
             'birth_date': forms.DateInput(attrs={
                 'format' : '%d/%m/%Y',
                 'type':'date',
@@ -75,21 +75,21 @@ class RegisterForm(forms.ModelForm):
         if self.email_exists():
             self.add_error('email', 'El email ingresado se encuentra en uso')
 
-        # Validar si la contraseña coincide con la confirmación de la contraseña
-        if not self.verify_psw():
-            self.add_error('confirm_password', 'Las contraseñas no coinciden')
+        # # Validar si la contraseña coincide con la confirmación de la contraseña
+        # if not self.verify_psw():
+        #     self.add_error('confirm_password', 'Las contraseñas no coinciden')
 
         # Validar si la Identificaición se encuentra en la DB
         #if self.identificacion_exists():
         #   self.add_error('identificacion', 'La Identificación ingresada se encuentra registrada')
 
 
-    def has_wrong_chars(self):
-        print('Verificando usename,{}'.format(self.cleaned_data['username']))
-        if '.' in self.cleaned_data['username']:
-            return True
-        else:
-            return False
+    # def has_wrong_chars(self):
+    #     print('Verificando usename,{}'.format(self.cleaned_data['username']))
+    #     if '.' in self.cleaned_data['username']:
+    #         return True
+    #     else:
+    #         return False
 
     def user_exists(self):
         print("Entra en user_exists(): {}".format(self.cleaned_data['username']))
@@ -107,27 +107,27 @@ class RegisterForm(forms.ModelForm):
         else:
             return False
 
-    def verify_psw(self):
-        print("Verificando las contraseñas...")
-        psw = self.cleaned_data['password']
-        conf_psw = self.cleaned_data['confirm_password']
-        if psw == conf_psw:
-            return True
-        else:
-            return False
+    # def verify_psw(self):
+    #     print("Verificando las contraseñas...")
+    #     psw = self.cleaned_data['password']
+    #     conf_psw = self.cleaned_data['confirm_password']
+    #     if psw == conf_psw:
+    #         return True
+    #     else:
+    #         return False
 
-    def identificacion_exists(self):
-        print("Verificando si la identificación ya ha sido registrada...")
-        """
-        Verifica si la Identificación ingresada se encuantra segistrada en la base de datos, retorna False
-        si no encuentra el valor y retorna True si encuentra un valor igual y ademas que se trate del mismo
-        tipo de identificación
-        """
-        identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'], tipo_id = self.cleaned_data['tipo_id'])
-        if identificacion.exists():
-            return True
-        else:
-            return False
+    # def identificacion_exists(self):
+    #     print("Verificando si la identificación ya ha sido registrada...")
+    #     """
+    #     Verifica si la Identificación ingresada se encuantra segistrada en la base de datos, retorna False
+    #     si no encuentra el valor y retorna True si encuentra un valor igual y ademas que se trate del mismo
+    #     tipo de identificación
+    #     """
+    #     identificacion = Usuario.objects.filter(identificacion = self.cleaned_data['identificacion'], tipo_id = self.cleaned_data['tipo_id'])
+    #     if identificacion.exists():
+    #         return True
+    #     else:
+    #         return False
 
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=50, widget=forms.TextInput(attrs={
