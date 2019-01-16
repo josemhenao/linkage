@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
+
 from . import global_vars
 from django.template.defaultfilters import slugify
 
@@ -29,8 +30,8 @@ from django.template.defaultfilters import slugify
 #         verbose_name_plural = "Roles"
 
 class Usuario(AbstractUser):
-    slug = models.SlugField()
 
+    # Verificar la conveniencia de este campo (mejor poner un ojito en el template de modo que se vea la contraseña ingresada)
     confirm_password = models.CharField(max_length=60, blank=True, null=True)
 
     birth_date = models.DateField()
@@ -51,7 +52,7 @@ class Usuario(AbstractUser):
     #identificacion = models.CharField(max_length=20, help_text="Número identificación"                              )
 
     def save(self,*args,**kwargs):
-        self.slug = slugify(self.username)
+        #self.slug = slugify(self.username)#No sé hace esto para dejar de usar el slug en vez de username
         super (Usuario,self).save(*args,**kwargs)
 
     def __str__(self):

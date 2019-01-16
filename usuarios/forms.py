@@ -64,8 +64,8 @@ class RegisterForm(forms.ModelForm):
         print("entra en el clean del RegisterForm")
 
         # Validar si el username contiene caracteres extraños
-        if self.has_wrong_chars():
-            self.add_error('username', 'No se admiten puntos en el username')
+        # if self.has_wrong_chars():
+        #     self.add_error('username', 'No se admiten puntos en el username')
 
         # Validar si el username existe en la DB
         if self.user_exists():
@@ -92,7 +92,7 @@ class RegisterForm(forms.ModelForm):
             return False
 
     def user_exists(self):
-        print("Entra en user_exists(): {}")
+        print("Entra en user_exists(): {}".format(self.cleaned_data['username']))
         user = Usuario.objects.filter(username = self.cleaned_data['username'])
         if user.exists():
             return True

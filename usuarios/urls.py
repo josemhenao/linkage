@@ -9,9 +9,9 @@ urlpatterns = [
     path('register', RegisterView.as_view(), name='usuarios_register'),
     path('login', LoginView.as_view(), name='usuarios_login'),
     path('logout', LogoutView.as_view(), name='usuarios_logout'),
-    path('<slug:slug>/profile', ProfileView.as_view(), name='usuarios_profile'),
-    path('<slug:slug>/update', UpdateView.as_view(), name='usuarios_update'),
+    path('<int:pk>/profile', ProfileView.as_view(), name='usuarios_profile'),
+    path('<int:pk>/update', UpdateView.as_view(), name='usuarios_update'),
     path('<str:username>/cambiar_password', ChangePasswordView.as_view(), name='usuarios_change_password'),
     path('<str:username>/cambiar_imagen', ChangeImageView.as_view(), name='usuarios_change_image'),
-    path('<slug:slug>/eliminar_cuenta', DeleteView.as_view(), name='usuarios_delete')
+    path('<str:username>/eliminar_cuenta', DeleteView.as_view(), name='usuarios_delete')
 ]

@@ -67,7 +67,7 @@
                     {% if user.is_authenticated %}
                         <li class="nav-item active">
                             <a class="nav-link"
-                               href="{% url 'usuarios_profile' user.slug %}"><img src="{{ user.imagen.url }}"
+                               href="{% url 'usuarios_profile' user.id %}"><img src="{{ user.imagen.url }}"
                                                                                   height="30"
                                                                                   style="border-radius: 6px;">
                                 {{ user.username }}

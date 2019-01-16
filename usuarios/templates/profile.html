@@ -11,13 +11,12 @@
         <div class="container">
             <br>
             <div class="form-row">
-                <label class="col-md-2"></label>
-                <label><img src="{{ user.imagen.url }}" width="250"></label>
+                <label><img src="{{ user.imagen.url }}" width="350"></label>
             </div>
-            <div class="form-row">
-                <label class="col-md-2"></label>
-                <a href="{% url 'usuarios_change_image' user.username %}">Cambiar imagen</a>
-            </div>
+
+{#            <div class="form-row">#}
+{#                <a href="{% url 'usuarios_change_image' user.username %}">Cambiar imagen</a>#}
+{#            </div>#}
 
             <br>
             <div class="form-row">
@@ -45,11 +44,6 @@
             </div>
 
             <div class="form-row">
-                <label class="col-md-2">Identificación</label>
-                <label>{{ user.tipo_id }} {{ user.identificacion }}</label>
-            </div>
-
-            <div class="form-row">
                 <label class="col-md-2"></label>
                 <a href="{% url 'usuarios_change_password' user.username %}">Cambiar Contraseña</a>
 
@@ -63,11 +57,10 @@
 
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <a href="{% url 'usuarios_update' user.slug %}">Actualizar datos</a>
+                <a href="{% url 'usuarios_update' user.id %}">Actualizar datos</a>
 
             </div>
         </div>
-
     </form>
 
 {% endblock content %}

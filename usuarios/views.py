@@ -55,9 +55,9 @@ class ProfileView(DetailView):
 
 class UpdateView(UpdateView):
     model = Usuario
-    fields = ['username','first_name', 'last_name', 'tipo_id', 'identificacion']
+    fields = ['username','first_name', 'last_name','birth_date', 'imagen']
     template_name = 'usuarios_update.html'
-    success_url = reverse_lazy('usuarios_profile', kwargs={'slug':'josem.henao'})
+    success_url = reverse_lazy('home')
 
 class ChangePasswordView(FormView):
     template_name = 'change_password.html'
@@ -81,7 +81,7 @@ class ChangeImageView(FormView):
     success_url = reverse_lazy('home')
 
     def form_valid(self, form):
-        print("--> Entra en el form_valid() de ChangeImageView...")
+        print("--> Entra en el form_valid() de ChangeImageView... username: {}".format(self.kwargs['username']))
         user = Usuario.objects.get(username=self.kwargs['username'])
         user.imagen = form.cleaned_data['imagen']
 
@@ -94,7 +94,6 @@ class ChangeImageView(FormView):
 
 
 class DeleteView(DeleteView):
-    print("--> Entra en DeleteView")
     model = Usuario
     success_url = reverse_lazy('home')
 
