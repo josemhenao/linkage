@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Linkage | Buscar{% endblock title %}
+
+{% block content %}
+    <h1>Ésta es la Página de Busquedas</h1>
+    {% if busqueda is '' %}
+        <p>{{ mensaje }}</p>
+
+    {% else %}
+        <p>Para la busqueda: {{ busqueda  }}</p>
+        <p>Se ha encontrado esto: {{ lugares }}</p>
+    {% endif %}
+
+
+
+{#        {% for lugar in lugares %}#}
+{#            <li>#}
+{#                {{ lugar }}#}
+{#            </li>#}
+{#        {% endfor %}#}
+{##}
+{#    {% for departamento in departamentos %}#}
+{#        <li>#}
+{#            {{ departamento }}#}
+{#        </li>#}
+{#    {% endfor %}#}
+{##}
+{#    {% for usuario in usuarios %}#}
+{#        <li>#}
+{#            {{ usuario }}#}
+{#        </li>#}
+{#    {% endfor %}#}
+
+{% endblock content %}
+
+{% block scripts %} {% endblock scripts %}

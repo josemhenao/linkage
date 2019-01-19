@@ -1,4 +1,4 @@
-from django.views.generic import ListView, FormView, DetailView
+from django.views.generic import ListView, FormView, DetailView, UpdateView
 from .models import Lugar
 from usuarios.models import Usuario
 from .forms import RegistroLugarForm, ChangeImageForm
@@ -27,10 +27,14 @@ class RegistroLugarView(FormView):
         return super(RegistroLugarView, self).form_valid(form)
 
 
+
 class DetalleLugarView(DetailView):
     model = Lugar
     template_name = 'detalle_lugar.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 class ChangeImageView(FormView):
     template_name = 'change_profile_image.html'
@@ -48,3 +52,9 @@ class ChangeImageView(FormView):
         else:
             print("--> No se ha modificado la imagen")
         return super(ChangeImageView, self).form_valid(form)
+
+class UpdateLugarView(UpdateView):
+    model = Lugar
+    fields = ['nombre','descripcion', 'img_ppal','ciudad','direccion', 'capacidad','categoria']
+    template_name = 'lugares_update_lugar.html'
+    success_url = reverse_lazy('lugares')

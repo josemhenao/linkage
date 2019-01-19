@@ -1,69 +1,20 @@
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Reggaeton',
-	'Descripción de la categiría Reggaeton'
+INSERT INTO `lugares_categoria` (`categoria`, `descripcion`)
+VALUES (
+	('Reggaeton','Descripción de la categiría Reggaeton'),
+	('Rock en Español','Descripción de la categiría Rock en Español'),
+  ('Baloncesto','Descripción de la categiría Baloncesto'),
+  ('Deportes','Descripción de la categiría Deportes'),
+  ('Matrimonio','Descripción de la categiría Matrimonio'),
+  ('Cumpleaños','Descripción de la categiría Cumpleaños'),
+  ('Graduaciones','Descripción de la categiría Graduaciones'),
+  ('História','Descripción de la categiría História'),
+  ('Cultura','Descripción de la categiría Cultura'),
+  ('Tecnología','Lugar de venta, distribución o propagación de productos o tecnologías modernas'),
+  ('Celular','Descripción de la categiría Celular'),
+  ('Smartphone','Descripción de la categiría Smartphone'),
+  ('Concierto','Descripción de la categiría Concierto'),
+  ('Cafetería','Lugar para encuentros cortos entre amigos o familiares'),
+  ('Café','Lugar para citas, reuniones o encuentros importantes'),
+  ('Bar','Lugar para citas, reuniones o encuentros importantes'),
+  ('Discoteca','Lugar local público pago con horario preferentemente nocturno para escuchar música grabada, bailar, interactuar con otras personas y consumir bebidas')
 );
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Rock en Español',
-	'Descripción de la categiría Rock en Español'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Baloncesto',
-	'Descripción de la categiría Baloncesto'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Deportes',
-	'Descripción de la categiría Deportes'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Matrimonio',
-	'Descripción de la categiría Matrimonio'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Cumpleaños',
-	'Descripción de la categiría Cumpleaños'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Graduaciones',
-	'Descripción de la categiría Graduaciones'
-);
-
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'História',
-	'Descripción de la categiría História'
-);
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Cultura',
-	'Descripción de la categiría Cultura'
-);
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Tecnología',
-	'Descripción de la categiría Tecnología'
-);
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Celular',
-	'Descripción de la categiría Celular'
-);
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Smartphone',
-	'Descripción de la categiría Smartphone'
-);
-INSERT INTO LUGARES_CATEGORIA (CATEGORIA, DESCRIPCION) VALUES (
-	'Concierto',
-	'Descripción de la categiría Concierto'
-);
-
-
-
-
-
-
-
-
-
-

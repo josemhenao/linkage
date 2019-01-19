@@ -16,7 +16,6 @@
                 <br>
 
                 <div class="form-row">
-                    <label class="col-md-2">Imagen Principal</label>
                     <label><img src="{{ lugar.img_ppal.url }}" width="750"></label>
                 </div>
 
@@ -47,6 +46,13 @@
                     <label>{{ lugar.categoria }}</label>
                 </div>
 
+                {% if user.is_authenticated %}
+                    <div class="form-row">
+                        <label class="col-md-2"></label>
+                        <a href="{% url 'lugares_update_lugar' lugar.id %}">Modificar este Lugar</a>
+                    </div>
+                {% endif %}
+
                 {# Agregar la validación de administrador de lugar #}
 
 {#                <div class="form-row">#}
@@ -60,7 +66,7 @@
         </form>
     {% else %}
         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+            No es lo que estás buscando, Tenemos un pequeño problema
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

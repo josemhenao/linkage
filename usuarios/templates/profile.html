@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {#{% load static from staticfiles %}#}
+{% load static %}
 
 {% block title %}
     Usuarios | Profile
@@ -11,7 +12,9 @@
         <div class="container">
             <br>
             <div class="form-row">
-                <label><img src="{{ user.imagen.url }}" width="350"></label>
+                <label class="col-md-2">{{ user.imagen.url }}</label>
+                <label><a href="{% static user.imagen.url %}"><img src="{{ user.imagen.url }}" width="350"></a></label>
+
             </div>
 
 {#            <div class="form-row">#}
@@ -51,12 +54,12 @@
 
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <a href="{% url 'usuarios_update' user.id %}">Actualizar datos</a>
+                <a href="{% url 'usuarios_update_usuario' user.id %}">Actualizar datos</a>
             </div>
 
             <div class="form-row">
                 <label class="col-md-2"></label>
-                <a href="{% url 'usuarios_delete' user.id %}">Eliminar cuenta</a>
+                <a href="{% url 'usuarios_delete_usuario' user.id %}">Eliminar cuenta</a>
             </div>
 
         </div>

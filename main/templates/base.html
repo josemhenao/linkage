@@ -6,32 +6,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-
     <title>{% block title %}{% endblock title %}</title>
-    {% load static from staticfiles %}
+    {% load static %}
 
-    {% block statics %}
-        <link rel="stylesheet" href="{% static 'css/header.css' %}" crossorigin="anonymous">
-        <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"
-                integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                crossorigin="anonymous"></script>
+{#    <link rel="stylesheet" href="{% static 'css/header.css' %}" crossorigin="anonymous">#}
+    <script src="{% static 'js/jquery-3.2.1.slim.min.js' %}"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
 
-        <script src="{% static 'js/popper.min.js' %}"
-                integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                crossorigin="anonymous"></script>
+    <script src="{% static 'js/popper.min.js' %}"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
 
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" crossorigin="anonymous">
-        <script src="{% static 'js/bootstrap.min.js' %}"
-                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" crossorigin="anonymous">
+    <script src="{% static 'js/bootstrap.min.js' %}"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
 
-    {% endblock statics %}
+    {% block styles %}
+    
+    {% endblock styles %}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'css/assets.css' %}">#}
+
 </head>
 
 <body>
 
 {% block header %}
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#252525;">
         <a class="navbar-brand" href="/">Linkage</a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -57,9 +59,9 @@
 
             </ul>
 
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="buscar" placeholder="Buscar" aria-label="Buscar">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+            <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'buscar' %}">
+                <input class="form-control mr-sm-2" type="text" placeholder="Buscar" aria-label="Buscar" name="busqueda">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="buscar">Buscar</button>
             </form>
 
             <div class="my-2 my-lg-0">
@@ -68,8 +70,7 @@
                         <li class="nav-item active">
                             <a class="nav-link"
                                href="{% url 'usuarios_profile' user.id %}"><img src="{{ user.imagen.url }}"
-                                                                                  height="30"
-                                                                                  style="border-radius: 6px;">
+                                                                                  height="30">
                                 {{ user.username }}
                             </a>
                         </li>

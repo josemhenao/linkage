@@ -4,7 +4,7 @@ from .models import Lugar, Categoria
 class RegistroLugarForm(forms.ModelForm):
     class Meta:
         model = Lugar
-        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad','categoria', 'img_ppal','imagenes']
+        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad','categoria', 'img_ppal','imagenes', 'admin']
 
         widgets ={
             'categoria': forms.CheckboxSelectMultiple()
@@ -12,6 +12,9 @@ class RegistroLugarForm(forms.ModelForm):
     def clean(self):
         print("Entra en clean() de form")
         print(self.cleaned_data)
+
+        # if not self.request.user:
+        #     self.add_error('admin','Debes estár logueado en la plataforma')
 
         if not self.validate_capacity():
             self.add_error('capacidad','Ingresa una cantidad válida')

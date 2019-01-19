@@ -82,6 +82,8 @@ class Lugar(models.Model):
                                  )
     imagenes = models.ManyToManyField(to=Imagen, verbose_name="Lista de imagenes", null=True, blank=True)
 
+    created_at = models.DateField(auto_now_add=True)
+
     #  Verificar la importancia de esto (ver si es mejor reescalar la imagen ppal)
     # img_slide = models.ImageField(upload_to='lugares/img/lugar', null=True, blank=True,
     #                               help_text="Imagen de un tamaño 1000 x 330 px, para mostrar en el slide de la"

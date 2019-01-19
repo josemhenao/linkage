@@ -10,8 +10,8 @@ urlpatterns = [
     path('login', LoginView.as_view(), name='usuarios_login'),
     path('logout', LogoutView.as_view(), name='usuarios_logout'),
     path('<int:pk>/profile', ProfileView.as_view(), name='usuarios_profile'),
-    path('<int:pk>/update', UpdateView.as_view(), name='usuarios_update'),
+    path('<int:pk>/update', UpdateView.as_view(), name='usuarios_update_usuario'),
     path('<str:username>/cambiar_password', ChangePasswordView.as_view(), name='usuarios_change_password'),
     #path('<str:username>/cambiar_imagen', ChangeImageView.as_view(), name='usuarios_change_image'),
-    path('<int:pk>/eliminar_cuenta', DeleteView.as_view(), name='usuarios_delete')
+    path('<int:pk>/eliminar_cuenta', DeleteView.as_view(), name='usuarios_delete_usuario')
 ]
