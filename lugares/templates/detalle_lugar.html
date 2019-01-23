@@ -49,7 +49,7 @@
                 {% if user.is_authenticated %}
                     <div class="form-row">
                         <label class="col-md-2"></label>
-                        <a href="{% url 'lugares_update_lugar' lugar.id %}">Modificar este Lugar</a>
+                        <a href="{% url 'lugares_update_lugar' lugar.slug %}">Modificar este Lugar</a>
                     </div>
                 {% endif %}
 

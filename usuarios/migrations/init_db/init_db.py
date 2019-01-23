@@ -13,7 +13,7 @@ from datetime import date
 #    init_db.insert_usuarios()
 
 
-def insert_usuarios():
+def init_usuarios():
     linkage = Usuario(username='linkage', email='linkage@linkage.com', birth_date=date.today(), is_staff=True,
                          is_superuser=True)
     linkage.set_password('linkage123')

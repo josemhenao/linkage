@@ -51,7 +51,7 @@ class Ciudad(models.Model):
 class Lugar(models.Model):
     id_lugar = models.AutoField("Id_lugar", primary_key=True)
 
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     nombre = models.CharField("Nombre", max_length=60,
                               help_text="Nombre del Lugar"
@@ -59,9 +59,9 @@ class Lugar(models.Model):
     descripcion = models.TextField(max_length=400, null=True, blank=True,
                                    help_text="Descripción del Lugar"
                                    )
-    categoria = models.ManyToManyField(Categoria,
-                                       verbose_name="Lista of categorias", null=True, blank=True
-                                       )
+    #categoria = models.ManyToManyField(Categoria,
+    #                                   verbose_name="Lista of categorias", null=True, blank=True
+    #                                   )
 
     capacidad = models.IntegerField(
         help_text="Número de personas que caben en el Lugar"

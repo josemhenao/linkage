@@ -1,26 +1,29 @@
 from django import forms
+from django.template.defaultfilters import slugify
+
 from .models import Lugar, Categoria
 
 class RegistroLugarForm(forms.ModelForm):
     class Meta:
         model = Lugar
-        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad','categoria', 'img_ppal','imagenes', 'admin']
+        fields = ['nombre', 'descripcion', 'capacidad', 'direccion', 'ciudad', 'img_ppal','imagenes']
 
         widgets ={
             'categoria': forms.CheckboxSelectMultiple()
         }
+
     def clean(self):
-        print("Entra en clean() de form")
+        print("Entra en clean() de RegistroLugarForm")
         print(self.cleaned_data)
 
-        # if not self.request.user:
-        #     self.add_error('admin','Debes estár logueado en la plataforma')
-
+        # Verificar que la capacida ingresada no sea un número extraño
         if not self.validate_capacity():
             self.add_error('capacidad','Ingresa una cantidad válida')
 
+        # Verificar que no exista un Lugar similar registrado
         if self.validate_lugar():
             self.add_error('nombre','Ya existe un lugar registrado con el mismo nombre en la misma ciudad')
+
 
     def validate_capacity(self):
         print("Entra en validate_capacity()")
@@ -38,7 +41,6 @@ class RegistroLugarForm(forms.ModelForm):
             return True
         else:
             return False
-
 
 class ChangeImageForm(forms.ModelForm):
     class Meta:

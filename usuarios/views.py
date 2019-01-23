@@ -47,11 +47,9 @@ class LogoutView(View):
         logout(request)
         return redirect(reverse('home'))
 
-
 class ProfileView(DetailView):
     model = Usuario
     template_name = 'profile.html'
-
 
 class UpdateView(UpdateView):
     model = Usuario
@@ -90,6 +88,7 @@ class ChangeImageView(FormView):
             print("--> Se ha modificado la imagen")
         else:
             print("--> No se ha modificado la imagen")
+
         return super(ChangeImageView, self).form_valid(form)
 
 

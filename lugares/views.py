@@ -23,9 +23,10 @@ class RegistroLugarView(FormView):
         lugar.nombre = form.cleaned_data['nombre'].title()
         if self.request.user:
             lugar.admin = Usuario.objects.get(username = self.request.user.username)
+        else:
+            lugar.admin = Usuario.objects.get(id=1)
         lugar.save()
         return super(RegistroLugarView, self).form_valid(form)
-
 
 
 class DetalleLugarView(DetailView):

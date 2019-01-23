@@ -4,7 +4,7 @@ from .models import Lugar, Categoria
 
 class LugarAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'capacidad', 'direccion', 'ciudad')
-    list_filter = ('nombre', 'capacidad', 'ciudad', 'categoria')
+    list_filter = ('nombre', 'capacidad', 'ciudad')
     list_per_page = 20
 
 class CategoriaAdmin(admin.ModelAdmin):

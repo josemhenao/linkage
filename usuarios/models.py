@@ -31,12 +31,9 @@ from django.template.defaultfilters import slugify
 
 class Usuario(AbstractUser):
 
-    # # Verificar la conveniencia de este campo (mejor poner un ojito en el template de modo que se vea la contraseña ingresada)
-    # confirm_password = models.CharField(max_length=60, blank=True, null=True)
-
     birth_date = models.DateField()
 
-    imagen = models.ImageField(upload_to='usuarios/img/profile', default = global_vars.DEFAULT_USER_IMAGE)
+    imagen = models.ImageField(upload_to = 'usuarios/img/profile', default = global_vars.DEFAULT_USER_IMAGE)
 
     # No se hace necesario el uso de Identificación
     # tipos_id = (
