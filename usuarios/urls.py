@@ -1,8 +1,7 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import UsuariosView, RegisterView, LoginView, ChangePasswordView, ChangeImageView, \
-    LogoutView, ProfileView, DeleteView, ProfileView, DeleteView, UpdateView
+from .views import UsuariosView, RegisterView, LoginView, ChangePasswordView, LogoutView, ProfileView, DeleteView, UpdateView
 
 urlpatterns = [
     #path('', UsuariosView.as_view(), name='usuarios'),

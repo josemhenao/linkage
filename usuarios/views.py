@@ -1,4 +1,5 @@
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy, reverse
@@ -47,13 +48,13 @@ class LogoutView(View):
         logout(request)
         return redirect(reverse('home'))
 
-class ProfileView(DetailView):
+class ProfileView(LoginRequiredMixin, DetailView):
     model = Usuario
     template_name = 'profile.html'
 
-class UpdateView(UpdateView):
+class UpdateView(LoginRequiredMixin, UpdateView):
     model = Usuario
-    fields = ['username','first_name', 'last_name','birth_date', 'imagen']
+    fields = ['username','first_name', 'last_name','birth_date','imagen']
     template_name = 'usuarios_update.html'
     success_url = reverse_lazy('home')
 
@@ -73,29 +74,28 @@ class ChangePasswordView(FormView):
         return super(ChangePasswordView, self).form_valid(form)
 
 
-class ChangeImageView(FormView):
-    template_name = 'change_profile_image.html'
-    form_class = ChangeImageForm
-    success_url = reverse_lazy('home')
+# class ChangeImageView(FormView):
+#     template_name = 'change_profile_image.html'
+#     form_class = ChangeImageForm
+#     success_url = reverse_lazy('home')
+#
+#     def form_valid(self, form):
+#         print("--> Entra en el form_valid() de ChangeImageView... username: {}".format(self.kwargs['username']))
+#         user = Usuario.objects.get(username=self.kwargs['username'])
+#         user.imagen = form.cleaned_data['imagen']
+#
+#         if form.cleaned_data['imagen'] != global_vars.DEFAULT_USER_IMAGE:
+#             user.save()
+#             print("--> Se ha modificado la imagen")
+#         else:
+#             print("--> No se ha modificado la imagen")
+#
+#         return super(ChangeImageView, self).form_valid(form)
 
-    def form_valid(self, form):
-        print("--> Entra en el form_valid() de ChangeImageView... username: {}".format(self.kwargs['username']))
-        user = Usuario.objects.get(username=self.kwargs['username'])
-        user.imagen = form.cleaned_data['imagen']
 
-        if form.cleaned_data['imagen'] != global_vars.DEFAULT_USER_IMAGE:
-            user.save()
-            print("--> Se ha modificado la imagen")
-        else:
-            print("--> No se ha modificado la imagen")
-
-        return super(ChangeImageView, self).form_valid(form)
-
-
-class DeleteView(DeleteView):
+class DeleteView(LoginRequiredMixin, DeleteView):
     model = Usuario
     success_url = reverse_lazy('home')
-
 
 def DeleteViewFunc(request, username=None):
     if username:

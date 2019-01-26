@@ -22,15 +22,14 @@
 
     <div class="container">
         <ul class="nav">
-
+            <li class="nav-item">
+                <a class="nav-link active" href="{% url 'lugares_register' %}">Agregar un lugar</a>
+            </li>
             {% if user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'lugares_register' %}">Agregar un lugar</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Mis lugares</a>
                 </li>
-            {% endif %}
+          {% endif %}
         </ul>
     </div>
 

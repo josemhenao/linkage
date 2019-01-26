@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{#{% load static from staticfiles %}#}
+
+{% block title %}
+Linkage | {{ lugar }}
+{% endblock title %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="container">
+
+            <br>
+            <p><i>Modifica los campos que desees</i></p>
+            <br>
+
+            <div class="form-group">
+                <label for="first_name" class="col-md-2">Nombre: </label>
+                {{ form.nombre }} {{ form.nombre.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="first_name" class="col-md-2">Descripción: </label>
+                {{ form.descripcion }} {{ form.descripcion.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Ciudad: </label>
+                {{ form.ciudad }} {{ form.ciudad.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Dirección: </label>
+                {{ form.direccion }} {{ form.direccion.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Capacidad: </label>
+                {{ form.capacidad }} {{ form.capacidad.errors }}
+            </div>
+
+            <div class="form-group">
+                <label for="last_name" class="col-md-2">Imagen Principal: </label>
+                {{ form.img_ppal }} {{ form.img_ppal.errors }}
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2"></label>
+                <input class="btn btn-outline-primary" type="submit" value="Actualizar"/>
+            </div>
+        </div>
+
+    </form>
+
+
+
+{% endblock content %}
+
+{% block scripts %}
+
+{% endblock scripts %}

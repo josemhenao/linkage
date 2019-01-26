@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import LugaresView, RegistroLugarView, DetalleLugarView, ChangeImageView, UpdateLugarView
+from .views import LugaresView, RegistroLugarView, DetalleLugarView, UpdateLugarView
 
 urlpatterns = [
     path('', LugaresView.as_view(), name='lugares'),
