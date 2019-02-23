@@ -39,11 +39,10 @@
         <div class="card-columns">
 
             {% for lugar in object_list %}
+                <a href="{% url 'lugares_detail' lugar.slug %}">
                     <div class="card">
                         {% if lugar.img_ppal %}
-                            <a href="{% url 'lugares_detail' lugar.slug %}"><img class="card-img-top"
-                                                                                 src="{{ lugar.img_ppal.url }}">
-                            </a>
+                            <img class="card-img-top" src="{{ lugar.img_ppal.url }}">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{ lugar.nombre }}</h5>
@@ -53,9 +52,9 @@
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">{{ lugar.ciudad }}, {{ lugar.capacidad }} personas</small>
-                            <small class="text-muted">{{ lugar.ciudad }}, {{ lugar.capacidad }} personas</small>
                         </div>
                     </div>
+                </a>
             {% endfor %}
         </div>
     </div>
